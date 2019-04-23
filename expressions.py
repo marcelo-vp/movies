@@ -2,7 +2,7 @@ aboutTesla = 'Teslas mission is to accelerate the worlds transition to sustainab
 elonMuskProfile = {
     'name': 'Elon Musk',
     'age': 48,
-    'companies': ['Tesla', 'SpaceX']
+    'companies': 'Tesla and SpaceX'
 }
 teslaCars = ('model 3', ['model s', 'model se'], 'model x')
 foundedCompanies = 'Elon Musk has founded the following companies: %s, %s and %s' % ('Pay Pal', 'Tesla', 'Space X')

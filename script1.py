@@ -1,9 +1,20 @@
 import sys
+from flask import Flask, render_template
 from expressions import aboutTesla, elonMuskProfile, teslaCars, foundedCompanies, randomShips, spacexShips, times, printUserInfo, generateSquares
 
-print('Python running on:', sys.platform, '\n')
-print(aboutTesla, '\n')
-print('CEO profile:')
+# Create an app to serve views to the browser:
+
+app = Flask(__name__)
+
+@app.route('/')
+def hello():
+    return render_template('index.html', intro=intro)
+
+intro = ['Python running on: %s' % sys.platform]
+intro.append(aboutTesla)
+intro.append('CEO profile:')
+
+# Logging things in the console:
 
 for key in elonMuskProfile:
     print(key, '\t', elonMuskProfile[key])

@@ -7,7 +7,7 @@ from expressions import aboutTesla, elonMuskProfile, teslaCars, foundedCompanies
 app = Flask(__name__)
 
 @app.route('/')
-def hello():
+def index():
     return render_template('index.html', intro=intro)
 
 intro = ['Python running on: %s' % sys.platform]

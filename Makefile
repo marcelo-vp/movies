@@ -1,5 +1,5 @@
-get-deps:
-	pip install flask
+requirements:
+	pip install -r requirements.txt
 
-run-dev:
+dev:
 	export FLASK_APP=script1.py && flask run

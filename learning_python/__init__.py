@@ -1,18 +1,11 @@
-import sys
-from flask import Flask, render_template
-from expressions import aboutTesla, elonMuskProfile, teslaCars, foundedCompanies, randomShips, spacexShips, times, printUserInfo, generateSquares
+from flask import Flask
+from learning_python.helpers.expressions import elonMuskProfile, teslaCars, foundedCompanies, randomShips, spacexShips, times, printUserInfo, generateSquares
 
 # Create an app to serve views to the browser:
 
 app = Flask(__name__)
 
-@app.route('/')
-def index():
-    return render_template('index.html', intro=intro)
-
-intro = ['Python running on: %s' % sys.platform]
-intro.append(aboutTesla)
-intro.append('CEO profile:')
+import learning_python.views
 
 # Logging things in the console:
 

@@ -1,5 +1,5 @@
 requirements:
-    pip install -r requirements.txt
+	pip install -r requirements.txt
 
 dev:
-    export FLASK_APP=script1.py && flask run
+	export FLASK_APP=learning_python && flask run

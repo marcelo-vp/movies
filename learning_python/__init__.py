@@ -1,5 +1,5 @@
 from flask import Flask
-from learning_python.helpers.expressions import elonMuskProfile, teslaCars, foundedCompanies, randomShips, spacexShips, times, printUserInfo, generateSquares
+from learning_python.helpers.expressions import *
 
 # Create an app to serve views to the browser:
 

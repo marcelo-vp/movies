@@ -27,5 +27,12 @@ def get_movie_data(title, **kwargs):
     }
     for key, value in kwargs.items():
         params[key] = str(value)
-    movie_data = requests.get(omdb_base_url, params=params)
-    return movie_data.json()
+    movie_data = requests.get(omdb_base_url, params=params).json()
+    try:
+        if not eval(movie_data['Response']):
+            raise ValueError('Movie not found!')
+    except ValueError as error:
+        print(error)
+        return {'title': 'Not found'}
+    else:
+        return movie_data

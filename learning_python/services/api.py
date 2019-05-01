@@ -1,4 +1,4 @@
-import os, requests
+import requests
 from learning_python.settings import OMDB_API_KEY, OMDB_ID
 
 omdb_base_url = 'http://www.omdbapi.com/?i={id}&apikey={key}&t={title}&plot={plot}'

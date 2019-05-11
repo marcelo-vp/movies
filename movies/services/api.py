@@ -1,5 +1,5 @@
 import re, requests
-from movies.helpers.constants import OMDB_BASE_URL
+from movies.constants import OMDB_BASE_URL
 from movies.settings import OMDB_API_KEY
 
 

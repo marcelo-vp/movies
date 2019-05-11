@@ -1,6 +1,6 @@
 import re, requests
-from learning_python.helpers.constants import OMDB_BASE_URL
-from learning_python.settings import OMDB_API_KEY
+from movies.helpers.constants import OMDB_BASE_URL
+from movies.settings import OMDB_API_KEY
 
 
 def get_response_as_boolean(data):

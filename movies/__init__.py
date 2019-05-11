@@ -1,11 +1,11 @@
 from flask import Flask
-from learning_python.helpers.expressions import *
+from movies.helpers.expressions import *
 
 # Create an app to serve views to the browser:
 
 app = Flask(__name__)
 
-import learning_python.views
+import movies.views
 
 # Logging things in the console:
 

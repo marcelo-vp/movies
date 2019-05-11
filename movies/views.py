@@ -1,7 +1,7 @@
 import sys
 from flask import render_template
-from learning_python import app
-from learning_python.services.api import get_movie_data
+from movies import app
+from movies.services.api import get_movie_data
 
 @app.route('/')
 def index():

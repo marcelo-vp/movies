@@ -15,27 +15,26 @@ document.addEventListener('DOMContentLoaded', () => {
             movieNameInput.setAttribute('placeholder', '');
         }
         const payload = { "movie_name": movieName };
-        makeRequest('POST', path, payload);
+        makePostRequest(path, payload);
     }
 });
 
-const makeRequest = (method, path, payload) => {
+const makePostRequest = (path, payload) => {
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
-            const movieData = JSON.parse(xhr.responseText);
-            document.querySelector('.movie-image').setAttribute('src', movieData['Poster']);
-            document.querySelector('.movie-plot').textContent = movieData['Plot'];
-            document.querySelector('.movie-section').style.display = 'block';
-            document.getElementById('movie-name').value = '';
+            successCallback(xhr.responseText);
         }
     }
-    xhr.open(method, path);
+    xhr.open('POST', path);
     xhr.setRequestHeader('Content-Type', 'application/json');
-    if (payload) {
-        xhr.send(JSON.stringify(payload));
-    }
-    else {
-        xhr.send();
-    }
+    xhr.send(JSON.stringify(payload));
+}
+
+const successCallback = response => {
+    const movieData = JSON.parse(response);
+    document.querySelector('.movie-image').setAttribute('src', movieData['Poster']);
+    document.querySelector('.movie-plot').textContent = movieData['Plot'];
+    document.querySelector('.movie-section').style.display = 'block';
+    document.getElementById('movie-name').value = '';
 }

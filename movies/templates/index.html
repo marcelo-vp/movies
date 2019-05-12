@@ -1,16 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Learning Python</title>
-</head>
-<body>
-    <h2>Movie info from OMDb:</h2>
-    <div class="movie-card">
-        <img src="{{ movie_data['Poster'] }}" />
-    </div>
-    <p>{{ movie_data }}</p>
-</body>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Learning Python</title>
+        <style>
+            .movie-data {
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <section class="form-section">
+                <h2>Search for a movie in the OMDB database</h2>
+                <form id="movie-search-form" action="/movie">
+                    <label for="movie-name">Enter a movie name:</label>
+                    <input type="text" name="movie-name" id="movie-name" />
+                    <input type="submit" value="Search" id="submit-button" />
+                </form>
+            </section>
+            <section class="movie-section">
+                <h2>Movie info from OMDb:</h2>
+                <div class="movie-card">
+                    <img class="movie-image" src="" />
+                </div>
+                <p class="movie-plot"></p>
+            </section>
+        </main>
+        <script src="../static/js/request.js"></script>
+    </body>
 </html>

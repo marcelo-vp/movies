@@ -33,6 +33,7 @@ const makePostRequest = (path, payload) => {
 
 const successCallback = response => {
     const movieData = JSON.parse(response);
+    document.querySelector('.movie-title').textContent = movieData['Title']
     document.querySelector('.movie-image').setAttribute('src', movieData['Poster']);
     document.querySelector('.movie-plot').textContent = movieData['Plot'];
     document.querySelector('.movie-section').style.display = 'block';

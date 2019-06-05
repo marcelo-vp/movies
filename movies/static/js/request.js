@@ -33,9 +33,23 @@ const makePostRequest = (path, payload) => {
 
 const successCallback = response => {
     const movieData = JSON.parse(response);
-    document.querySelector('.movie-title').textContent = movieData['Title']
-    document.querySelector('.movie-image').setAttribute('src', movieData['Poster']);
-    document.querySelector('.movie-plot').textContent = movieData['Plot'];
-    document.querySelector('.movie-section').style.display = 'block';
-    document.getElementById('movie-name').value = '';
+    const movieSection = document.querySelector('.movie-section');
+    const errorSection = document.querySelector('.error-section');
+
+    if (movieData['has_error']) {
+        movieSection.style.display = 'none';
+        document.querySelector('.error-message').textContent = movieData['error'];
+        document.querySelector('.error-image').setAttribute(
+            'src', '../static/img/not-found.svg'
+        );
+        errorSection.style.display = 'block';
+    }
+    else {
+        errorSection.style.display = 'none';
+        document.querySelector('.movie-title').textContent = movieData['Title'];
+        document.querySelector('.movie-image').setAttribute('src', movieData['Poster']);
+        document.querySelector('.movie-plot').textContent = movieData['Plot'];
+        movieSection.style.display = 'block';
+        document.getElementById('movie-name').value = '';
+    }
 }

@@ -44,7 +44,10 @@ def get_movie_data(title, **kwargs):
             response.raise_for_status()
     except Exception as error:
         print(error)
-        return 'Service unavailable. Try again later.'
+        return {
+                "has_error": True,
+                "error": "Service unavailable. Try again later."
+            }
     else:
         # Tries to parse the response into JSON format
         # and checks if the "Response" key is not False
@@ -52,9 +55,12 @@ def get_movie_data(title, **kwargs):
             movie_data = response.json()
             has_response = get_response_as_boolean(movie_data)
             if not has_response:
-                raise ValueError('Movie not found!')
+                raise ValueError("Movie not found!")
         except ValueError as error:
             print(error)
-            return 'Movie has invalid data or was not found.'
+            return {
+                "has_error": True,
+                "error": str(error)
+            }
         else:
             return movie_data

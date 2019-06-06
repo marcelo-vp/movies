@@ -27,27 +27,27 @@ def get_movie_data(title, **kwargs):
         movie_data(dict): movie data in JSON format
 
     """
-    omdb_base_url = OMDB_BASE_URL
     title = re.sub('\\s+', '+', title)
     params = {
         'apikey': OMDB_API_KEY,
         't': title
     }
+
     for key, value in kwargs.items():
         params[key] = str(value)
+
+    error_data = { "has_error": True }
 
     # Tries to get a response within the timeout value
     # and with status code == 200
     try:
-        response = requests.get(omdb_base_url, params=params, timeout=3.00)
+        response = requests.get(OMDB_BASE_URL, params=params, timeout=3.00)
         if not response.status_code == 200:
             response.raise_for_status()
     except Exception as error:
         print(error)
-        return {
-                "has_error": True,
-                "error": "Service unavailable. Try again later."
-            }
+        error_data["error"] = "Service unavailable. Try again later."
+        return error_data
     else:
         # Tries to parse the response into JSON format
         # and checks if the "Response" key is not False
@@ -58,9 +58,7 @@ def get_movie_data(title, **kwargs):
                 raise ValueError("Movie not found!")
         except ValueError as error:
             print(error)
-            return {
-                "has_error": True,
-                "error": str(error)
-            }
+            error_data["error"] = str(error)
+            return error_data
         else:
             return movie_data

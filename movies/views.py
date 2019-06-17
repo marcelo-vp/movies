@@ -1,7 +1,7 @@
 import json, sys
 from flask import render_template, request
 from movies import app
-from movies.services.api import get_movie_data
+from movies.services.omdb import get_movie_data
 
 @app.route('/')
 def index():

@@ -1,12 +1,15 @@
-// Handles form requests and server responses
+// Handles movie search on OMDB database
 
 document.addEventListener('DOMContentLoaded', () => {
     const submitButton = document.getElementById('submit-button');
     submitButton.onclick = e => {
         e.preventDefault();
+        document.querySelector('.movie-section').style.display = 'none';
+
         const path = document.getElementById('movie-search-form').getAttribute('action');
         const movieNameInput = document.getElementById('movie-name');
         const movieName = movieNameInput.value;
+
         if (!movieName) {
             movieNameInput.setAttribute('placeholder', 'Enter a movie name');
             return;
@@ -14,24 +17,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (movieNameInput.getAttribute('placeholder')) {
             movieNameInput.setAttribute('placeholder', '');
         }
+
         const payload = { "movie_name": movieName };
-        makePostRequest(path, payload);
+        makePostRequest(path, payload, omdbSuccessCallback);
     }
 });
 
-const makePostRequest = (path, payload) => {
-    const xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            successCallback(xhr.responseText);
-        }
-    }
-    xhr.open('POST', path);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify(payload));
-}
-
-const successCallback = response => {
+const omdbSuccessCallback = response => {
     const movieData = JSON.parse(response);
     const movieSection = document.querySelector('.movie-section');
     const errorSection = document.querySelector('.error-section');

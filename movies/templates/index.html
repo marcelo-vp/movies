@@ -6,7 +6,8 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Learning Python</title>
         <style>
-            .movie-data {
+            .movie-section,
+            .added-to-favorites {
                 display: none;
             }
             .error-image {
@@ -18,7 +19,7 @@
         <main>
             <section class="form-section">
                 <h2>Search for a movie in OMDB:</h2>
-                <form id="movie-search-form" action="/movie">
+                <form id="movie-search-form" action="/omdb">
                     <label for="movie-name">Enter the movie name:</label>
                     <input type="text" name="movie-name" id="movie-name" />
                     <input type="submit" value="Search" id="submit-button" />
@@ -30,12 +31,16 @@
                     <img class="movie-image" src="" />
                 </div>
                 <p class="movie-plot"></p>
+                <button id="add-to-favorites">Add to favorites</button>
+                <p class="added-to-favorites">Sucessfully added to favorites!</p>
             </section>
             <section class="error-section">
                 <h2 class="error-message"></h2>
                 <img class="error-image" src="" alt="">
             </section>
         </main>
-        <script src="../static/js/request.js"></script>
+        <script src="../static/js/requests.js"></script>
+        <script src="../static/js/omdb.js"></script>
+        <script src="../static/js/favorites.js"></script>
     </body>
 </html>

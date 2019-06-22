@@ -8,4 +8,4 @@ const makePostRequest = (path, payload, successCallback) => {
     xhr.open('POST', path);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify(payload));
-}
+};

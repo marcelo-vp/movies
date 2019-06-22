@@ -1,4 +1,4 @@
-import json, sys
+import json
 from flask import render_template, request
 from movies import app
 from movies.services.omdb import get_movie_data

@@ -3,3 +3,4 @@ __pycache__
 *.pyc
 .env
 /movies/helpers/expressions.py
+/node_modules

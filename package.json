@@ -1,0 +1,26 @@
+{
+  "name": "learning-python",
+  "version": "1.0.0",
+  "description": "The goal of the `Learning Python` project is to get familiar with the concepts, syntax and funcionality of the language.",
+  "private": true,
+  "scripts": {
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcelo-vp/learning-python.git"
+  },
+  "keywords": [],
+  "author": "Marcelo Pinto",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marcelo-vp/learning-python/issues"
+  },
+  "homepage": "https://github.com/marcelo-vp/learning-python#readme",
+  "devDependencies": {
+    "file-loader": "^4.0.0",
+    "webpack": "^4.35.0",
+    "webpack-cli": "^3.3.5"
+  }
+}

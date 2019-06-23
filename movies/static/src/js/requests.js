@@ -9,3 +9,5 @@ const makePostRequest = (path, payload, successCallback) => {
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify(payload));
 };
+
+export default makePostRequest;

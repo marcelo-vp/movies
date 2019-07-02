@@ -1,4 +1,4 @@
-import makePostRequest from './requests';
+import makeRequest from './requests';
 
 const handleAddFavorite = () => {
     document.getElementById('add-to-favorites').onclick = e => {
@@ -8,7 +8,7 @@ const handleAddFavorite = () => {
             "image": document.querySelector('.movie-image').getAttribute('src'),
             "plot": document.querySelector('.movie-plot').textContent
         };
-        makePostRequest(path, payload, successCallback);
+        makeRequest.post(path, payload, successCallback);
     }
 };
 
@@ -18,5 +18,9 @@ const successCallback = response => {
         document.querySelector('.added-to-favorites').style.display = 'block';
     }
 };
+
+const handleLoadFavorites = () => {
+    // make GET request to mongoDB
+}
 
 export default handleAddFavorite;

@@ -1,4 +1,4 @@
-import makePostRequest from './requests';
+import makeRequest from './requests';
 
 const handleMovieSearch = () => {
     document.getElementById('submit-button').onclick = e => {
@@ -18,7 +18,7 @@ const handleMovieSearch = () => {
         }
 
         const payload = { "movie_name": movieName };
-        makePostRequest(path, payload, successCallback);
+        makeRequest.post(path, payload, successCallback);
     }
 };
 

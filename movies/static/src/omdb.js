@@ -31,7 +31,7 @@ const successCallback = response => {
         movieSection.style.display = 'none';
         document.querySelector('.error-message').textContent = movieData['error'];
         document.querySelector('.error-image').setAttribute(
-            'src', '../../../static/src/img/not-found.svg'
+            'src', '../static/src/not-found.svg'
         );
         errorSection.style.display = 'block';
     }

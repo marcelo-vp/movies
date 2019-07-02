@@ -19,7 +19,6 @@
   },
   "homepage": "https://github.com/marcelo-vp/learning-python#readme",
   "devDependencies": {
-    "file-loader": "^4.0.0",
     "webpack": "^4.35.0",
     "webpack-cli": "^3.3.5"
   }

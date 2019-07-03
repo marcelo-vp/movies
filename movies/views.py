@@ -2,7 +2,7 @@ import json
 from flask import render_template, request
 from movies import app
 from movies.services.omdb import get_movie_data
-from movies.services.favorites import add_favorite
+from movies.services.favorites import add_favorite, get_favorites
 
 @app.route('/')
 def index():
@@ -18,4 +18,7 @@ def send_movie_data():
 def handle_favorites():
     if (request.method == 'POST'):
         response = add_favorite(json.loads(request.data))
+        return json.dumps(response)
+    if (request.method == 'GET'):
+        response = get_favorites()
         return json.dumps(response)

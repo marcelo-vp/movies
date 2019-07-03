@@ -13,6 +13,20 @@
             .error-image {
                 width: 80px;
             }
+            .favorites-list {
+                list-style-type: none;
+                text-align: center;
+                display: flex;
+                margin: 0 auto;
+                align-items: flex-start;
+                flex-wrap: wrap;
+                justify-content: center;
+                padding-top: 40px;
+            }
+            .favorites-list li {
+                width: 30%;
+                margin: 0 5% 10%;
+            }
         </style>
     </head>
     <body>
@@ -37,6 +51,10 @@
             <section class="error-section">
                 <h2 class="error-message"></h2>
                 <img class="error-image" src="" alt="">
+            </section>
+            <section class="favorites-section">
+                <button id="get-favorites">Load favorite movies!</button>
+                <ul class="favorites-list"></ul>
             </section>
         </main>
         <script src="../static/dist/bundle.js"></script>

@@ -12,4 +12,13 @@ def add_favorite(movie_data):
         'plot': movie_data["plot"]
     }
     movies.insert_one(new_favorite)
+
     return { "added": True }
+
+def get_favorites():
+    favorites = []
+    for movie in movies.find():
+        del movie['_id']
+        favorites.append(movie)
+
+    return { "favorites": favorites }

@@ -18,11 +18,11 @@ const handleMovieSearch = () => {
         }
 
         const payload = { "movie_name": movieName };
-        makeRequest.post(path, payload, successCallback);
+        makeRequest.post(path, payload, handleSearchResult);
     }
 };
 
-const successCallback = response => {
+const handleSearchResult = response => {
     const movieData = JSON.parse(response);
     const movieSection = document.querySelector('.movie-section');
     const errorSection = document.querySelector('.error-section');

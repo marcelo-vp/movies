@@ -1,4 +1,4 @@
-requirements:
+dependencies:
 	pip install -r requirements.txt && npm i
 
 build:

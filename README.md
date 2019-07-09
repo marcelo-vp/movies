@@ -1,22 +1,16 @@
 ## 1. Introduction
 
-The goal of the `Learning Python` project is to get familiar with the concepts, syntax and funcionality of the language.
+The **Movies App** provides an easy way to search for movies and add them to your favorites list.
 
-Thus the code written here covers the following features:
-- Object types and operations
-- Instructions and expressions
-- Functions
-- Errors and exceptions handling
-
-## 2. Running the app
-### 2.1 Installing dependencies
+## 2. Setting up the environment
+### 2.1 Creating a virtualenv
+    mkvirtualenv -p python3 movies
+### 2.2 Installing both Python and Node dependencies
     make requirements
-### 2.2 Building the JS module bundle
+
+## 3. Running the app
+### 3.1 Building the JS modules bundle
     make build
-### 2.3 Running the app
+### 3.2 Running the app
     make run mode={environment}
   where *{environment}* is either **development** or **production**
-
-## 3. References
-Learning Python - 2nd edition  
-*Mark Lutz and David Ascher*

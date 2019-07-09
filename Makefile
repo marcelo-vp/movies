@@ -1,5 +1,5 @@
 requirements:
-	pip install -r requirements.txt
+	pip install -r requirements.txt && npm i
 
 build:
 	npm run build

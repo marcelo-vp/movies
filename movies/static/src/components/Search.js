@@ -79,7 +79,11 @@ class Search extends Component {
                 {this.state.showError && (
                     <section className="error-section">
                         <h2>{this.state.errorMsg}</h2>
-                        <img style={{ width: '80px' }} src="../static/src/not-found.svg" alt=""/>
+                        <img
+                            style={{ width: '80px' }}
+                            src="../static/src/img/not-found.svg"
+                            alt=""
+                        />
                     </section>
                 )}
             </Fragment>

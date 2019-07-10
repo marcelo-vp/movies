@@ -1,63 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Learning Python</title>
-        <style>
-            .movie-section,
-            .added-to-favorites {
-                display: none;
-            }
-            .error-image {
-                width: 80px;
-            }
-            .favorites-list {
-                list-style-type: none;
-                text-align: center;
-                display: flex;
-                margin: 0 auto;
-                align-items: flex-start;
-                flex-wrap: wrap;
-                justify-content: center;
-                padding-top: 40px;
-            }
-            .favorites-list li {
-                width: 30%;
-                margin: 0 5% 10%;
-            }
-        </style>
+        <meta charset="UTF-8"/>
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, minimum-scale=1, shrink-to-fit=no"
+        />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+        <title>Movies</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"/>
     </head>
     <body>
-        <main>
-            <div class="greetings"></div>
-            <section class="form-section">
-                <h2>Search for a movie in OMDB:</h2>
-                <form id="movie-search-form" action="/omdb">
-                    <label for="movie-name">Enter the movie name:</label>
-                    <input type="text" name="movie-name" id="movie-name" />
-                    <input type="submit" value="Search" id="submit-button" />
-                </form>
-            </section>
-            <section class="movie-section">
-                <h2 class="movie-title"></h2>
-                <div class="movie-card">
-                    <img class="movie-image" src="" />
-                </div>
-                <p class="movie-plot"></p>
-                <button id="add-to-favorites">Add to favorites</button>
-                <p class="added-to-favorites">Sucessfully added to favorites!</p>
-            </section>
-            <section class="error-section">
-                <h2 class="error-message"></h2>
-                <img class="error-image" src="" alt="">
-            </section>
-            <section class="favorites-section">
-                <button id="get-favorites">Load favorite movies!</button>
-                <ul class="favorites-list"></ul>
-            </section>
-        </main>
+        <div id="app"></div>
         <script src="../static/dist/bundle.js"></script>
     </body>
 </html>

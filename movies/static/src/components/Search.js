@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component, Fragment } from 'react';
 import { movies } from '../controllers/Api';
 
 class Search extends Component {

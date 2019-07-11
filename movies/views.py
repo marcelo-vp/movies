@@ -8,9 +8,8 @@ from movies.services.favorites import add_favorite, get_favorites
 def index():
     return render_template('index.html')
 
-@app.route('/omdb', methods=['POST'])
-def send_movie_data():
-    movie_name = json.loads(request.data)['movie_name']
+@app.route('/search/<movie_name>')
+def search_movie_data(movie_name):
     movie_data = get_movie_data(movie_name, plot='full')
     return json.dumps(movie_data)
 

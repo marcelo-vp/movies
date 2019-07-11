@@ -1,10 +1,11 @@
 import React, { Component, Fragment } from "react";
-import makeRequest from '../requests';
+import { movies } from '../controllers/Api';
 
 class Search extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            movieName: '',
             showResults: false,
             showError: false,
         };
@@ -12,7 +13,7 @@ class Search extends Component {
     handleMovieName = e => {
         this.setState({ movieName: e.target.value });
     };
-    handleSearch = e => {
+    handleSearch = async e => {
         e.preventDefault();
         this.setState({ showResults: false });
 
@@ -25,11 +26,8 @@ class Search extends Component {
             this.setState({ placeholder: '' });
         }
 
-        makeRequest.post(
-            '/omdb',
-            { "movie_name": this.state.movieName },
-            this.handleSearchResult
-        );
+        const result = await movies.get(this.state.movieName);
+        this.handleSearchResult(result);
     };
     handleSearchResult = result => {
         const movieData = JSON.parse(result);
@@ -62,6 +60,7 @@ class Search extends Component {
                             type="text"
                             name="movie-name"
                             placeholder={this.state.placeholder}
+                            value={this.state.movieName}
                             onChange={this.handleMovieName}
                         />
                         <input type="submit" value="Search" onClick={this.handleSearch}/>

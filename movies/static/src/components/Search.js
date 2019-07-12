@@ -53,7 +53,7 @@ class Search extends Component {
     };
     handleAddFavorite = async () => {
         const newFavorite = {
-            'title': this.state.movieName,
+            'title': this.state.movieTitle,
             'image': this.state.movieImg,
             'plot': this.state.moviePlot
         };
@@ -94,7 +94,7 @@ class Search extends Component {
                     </section>
                 )}
                 {this.state.showError && (
-                    <section className="error-section">
+                    <section>
                         <h2>{this.state.errorMsg}</h2>
                         <img
                             style={{ width: '80px' }}

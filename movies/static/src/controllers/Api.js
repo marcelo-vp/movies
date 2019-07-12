@@ -1,4 +1,4 @@
-import request from './requests';
+import request from '../helpers/requests';
 
 const movies = {
     get: async name => await request.get(`/search/${name}`)

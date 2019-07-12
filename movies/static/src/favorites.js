@@ -2,24 +2,6 @@ import makeRequest from './requests';
 
 const PATH = '/favorites';
 
-const handleAddFavorite = () => {
-    document.getElementById('add-to-favorites').onclick = e => {
-        const payload = {
-            "title": document.querySelector('.movie-title').textContent,
-            "image": document.querySelector('.movie-image').getAttribute('src'),
-            "plot": document.querySelector('.movie-plot').textContent
-        };
-        makeRequest.post(PATH, payload, handleSuccessResponse);
-    }
-
-    const handleSuccessResponse = response => {
-        const jsonResponse = JSON.parse(response);
-        if (jsonResponse["added"]) {
-            document.querySelector('.added-to-favorites').style.display = 'block';
-        }
-    };
-};
-
 const handleGetFavorites = () => {
     document.getElementById('get-favorites').onclick = e => {
         makeRequest.get(PATH, handleFavoritesList);

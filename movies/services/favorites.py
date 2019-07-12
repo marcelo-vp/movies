@@ -15,7 +15,7 @@ def add_favorite(movie_data):
 
     return { "added": True }
 
-def get_favorites():
+def list_favorites():
     favorites = []
     for movie in movies.find():
         del movie['_id']

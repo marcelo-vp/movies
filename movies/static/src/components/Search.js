@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { movies } from '../controllers/Api';
+import { movies, favorites } from '../controllers/Api';
 
 class Search extends Component {
     constructor(props) {
@@ -8,6 +8,7 @@ class Search extends Component {
             movieName: '',
             showResults: false,
             showError: false,
+            addedToFavorites: false
         };
     }
     handleMovieName = e => {
@@ -45,8 +46,21 @@ class Search extends Component {
                 movieImg: movieData['Poster'],
                 moviePlot: movieData['Plot'],
                 showResults: true,
-                movieName: ''
+                movieName: '',
+                addedToFavorites: false
             });
+        }
+    };
+    handleAddFavorite = async () => {
+        const newFavorite = {
+            'title': this.state.movieName,
+            'image': this.state.movieImg,
+            'plot': this.state.moviePlot
+        };
+        const response = await favorites.add(newFavorite);
+
+        if (JSON.parse(response)['added']) {
+            this.setState({ addedToFavorites: true })
         }
     };
     render() {
@@ -71,8 +85,12 @@ class Search extends Component {
                         <h2>{this.state.movieTitle}</h2>
                         <div><img src={this.state.movieImg}/></div>
                         <p>{this.state.moviePlot}</p>
-                        <button id="add-to-favorites">Add to favorites</button>
-                        <p style={{display: 'none'}}>Sucessfully added to favorites!</p>
+                        <button onClick={this.handleAddFavorite}>
+                            Add to favorites
+                        </button>
+                        {this.state.addedToFavorites && (
+                            <p>Sucessfully added to favorites!</p>
+                        )}
                     </section>
                 )}
                 {this.state.showError && (

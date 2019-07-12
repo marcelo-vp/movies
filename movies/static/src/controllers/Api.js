@@ -4,4 +4,9 @@ const movies = {
     get: async name => await request.get(`/search/${name}`)
 };
 
-export { movies };
+const favorites = {
+    list: async () => await request.get('/favorites'),
+    add: async favorite => await request.post('/favorites', favorite)
+}
+
+export { movies, favorites };

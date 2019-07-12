@@ -1,4 +1,4 @@
-import 'core-js/stable'
+import 'core-js-pure/stable'
 import 'regenerator-runtime/runtime';
 // Try to remove the imports above, since they
 // are only required for async/await to work

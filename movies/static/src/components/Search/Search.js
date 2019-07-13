@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { movies, favorites } from '../controllers/Api';
+import { movies, favorites } from '../../controllers/Api';
 
 class Search extends Component {
     constructor(props) {
@@ -98,7 +98,7 @@ class Search extends Component {
                         <h2>{this.state.errorMsg}</h2>
                         <img
                             style={{ width: '80px' }}
-                            src="../static/src/img/not-found.svg"
+                            src="./img/not-found.svg"
                             alt=""
                         />
                     </section>

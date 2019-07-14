@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { movies, favorites } from '../../controllers/Api';
+import { movies, favorites } from '../../libs/Api';
 
 class Search extends Component {
     constructor(props) {

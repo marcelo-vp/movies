@@ -1,23 +1,19 @@
 import json
 from flask import render_template, request
 from movies import app
-from movies.services.omdb import get_movie_data
-from movies.services.favorites import add_favorite, list_favorites
+from movies.controllers.search import SearchController
+from movies.controllers.favorites import FavoritesController
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
 @app.route('/search/<movie_name>')
-def search_movie_data(movie_name):
-    movie_data = get_movie_data(movie_name, plot='full')
-    return json.dumps(movie_data)
+def handle_movie_search(movie_name):
+    controller = SearchController(movie_name)
+    return controller.handle_search()
 
 @app.route('/favorites', methods=['POST', 'GET'])
-def handle_favorites():
-    if (request.method == 'POST'):
-        response = add_favorite(json.loads(request.data))
-        return json.dumps(response)
-    if (request.method == 'GET'):
-        response = list_favorites()
-        return json.dumps(response)
+def handle_movie_favorites():
+    controller = FavoritesController(request)
+    return controller.handle_favorites()

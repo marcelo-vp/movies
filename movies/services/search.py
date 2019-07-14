@@ -11,8 +11,9 @@ def get_response_as_boolean(data):
     return response_as_boolean
 
 
-def get_movie_data(title, **kwargs):
-    """ Gets movie data from OMDb
+def search_movie(title, **kwargs):
+    """
+    Searches for movie in OMDb
 
     Required parameters:
         title(str): movie title

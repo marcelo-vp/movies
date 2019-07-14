@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { favorites } from '../controllers/Api';
+import { favorites } from '../libs/Api';
 
 class Favorites extends Component {
     constructor(props) {

@@ -1,12 +1,9 @@
-import request from '../helpers/requests';
+import request from './requests';
 
-const movies = {
-    get: async name => await request.get(`/search/${name}`)
+const Api = {
+    list: async endpoint => await request.get(endpoint),
+    get: async (endpoint, id) => await request.get(`${endpoint}/${id}`),
+    add: async (endpoint, data) => await request.post(endpoint, data)
 };
 
-const favorites = {
-    list: async () => await request.get('/favorites'),
-    add: async favorite => await request.post('/favorites', favorite)
-};
-
-export { movies, favorites };
+export default Api;

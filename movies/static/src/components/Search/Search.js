@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { movies, favorites } from '../../libs/Api';
+import Api from '../../libs/Api';
 
 class Search extends Component {
     constructor(props) {
@@ -27,7 +27,10 @@ class Search extends Component {
             this.setState({ placeholder: '' });
         }
 
-        const result = await movies.get(this.state.movieName);
+        const result = await Api.get(
+            '/search',
+            this.state.movieName
+        );
         this.handleSearchResult(result);
     };
     handleSearchResult = result => {
@@ -57,7 +60,7 @@ class Search extends Component {
             'image': this.state.movieImg,
             'plot': this.state.moviePlot
         };
-        const response = await favorites.add(newFavorite);
+        const response = await Api.add('/favorites', newFavorite);
 
         if (JSON.parse(response)['added']) {
             this.setState({ addedToFavorites: true })

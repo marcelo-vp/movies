@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { favorites } from '../libs/Api';
+import Api from '../libs/Api';
 
 class Favorites extends Component {
     constructor(props) {
@@ -9,7 +9,7 @@ class Favorites extends Component {
         };
     }
     loadFavorites = async () => {
-        const response = await favorites.list();
+        const response = await Api.list('/favorites');
         const movies = JSON.parse(response)['favorites'];
         this.setState({ movies });
     }

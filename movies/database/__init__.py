@@ -5,10 +5,11 @@ class MoviesDB:
     client = None
 
     def __init__(self):
-        self.db = self.get_client().movies_app
+        self.db = self.db_client.movies_app
         self.favorites = self.db.favorites
 
-    def get_client(self):
+    @property
+    def db_client(self):
         if not self.client:
             self.client = MongoClient()
         return self.client

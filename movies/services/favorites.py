@@ -1,9 +1,6 @@
-from pymongo import MongoClient
+from movies.database import MoviesDB
 
-mongo_client = MongoClient()
-
-db = mongo_client.movies_app
-movies = db.movies
+movies_db = MoviesDB()
 
 def add_favorite(movie_data):
     new_favorite = {
@@ -11,14 +8,9 @@ def add_favorite(movie_data):
         'image': movie_data["image"],
         'plot': movie_data["plot"]
     }
-    movies.insert_one(new_favorite)
-
+    movies_db.add_favorite(new_favorite)
     return { "added": True }
 
 def list_favorites():
-    favorites = []
-    for movie in movies.find():
-        del movie['_id']
-        favorites.append(movie)
-
+    favorites = movies_db.list_favorites()
     return { "favorites": favorites }

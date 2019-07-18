@@ -1,12 +1,14 @@
-import React, { Fragment } from 'react';
+import React from 'react';
+import { ThemeProvider } from '@material-ui/styles';
+import Theme from '../theme';
 import Search from './Search';
 import Favorites from './Favorites';
 
 export default function App() {
     return (
-        <Fragment>
+        <ThemeProvider theme={Theme}>
             <Search/>
             <Favorites/>
-        </Fragment>
+        </ThemeProvider>
     );
 };

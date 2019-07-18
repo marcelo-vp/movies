@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { Button, TextField, Typography } from '@material-ui/core';
 import Api from '../../libs/Api';
 
 class Search extends Component {
@@ -19,7 +20,7 @@ class Search extends Component {
         this.setState({ showResults: false });
 
         if (!this.state.movieName) {
-            this.setState({ placeholder: 'Enter a movie name!' });
+            this.setState({ placeholder: 'Fill in a name...' });
             return;
         }
 
@@ -67,20 +68,57 @@ class Search extends Component {
         }
     };
     render() {
+        const styles = {
+            title: {
+                margin: '24px auto 35px'
+            },
+            label: {
+                padding: '0 20px'
+            },
+            searchButton: {
+                marginLeft: 24
+            },
+            errorImg: {
+                width: 80
+            }
+        };
+
         return (
             <Fragment>
                 <section>
-                    <h2>Search for a movie in OMDB:</h2>
+                    <Typography
+                        variant="h2"
+                        align="center"
+                        color="primary"
+                        style={styles.title}
+                    >
+                        Search for a movie:
+                    </Typography>
                     <form>
-                        <label htmlFor="movie-name">Enter the movie name:</label>
-                        <input
-                            type="text"
+                        <Typography
+                            component="label"
+                            htmlFor="movie-name"
+                            variant="caption"
+                            color="textPrimary"
+                            style={styles.label}
+                        >
+                            Enter a movie name:
+                        </Typography>
+                        <TextField
                             name="movie-name"
                             placeholder={this.state.placeholder}
                             value={this.state.movieName}
                             onChange={this.handleMovieName}
                         />
-                        <input type="submit" value="Search" onClick={this.handleSearch}/>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            type="submit"
+                            onClick={this.handleSearch}
+                            style={styles.searchButton}
+                        >
+                            Search
+                        </Button>
                     </form>
                 </section>
                 {this.state.showResults && (
@@ -100,7 +138,7 @@ class Search extends Component {
                     <section>
                         <h2>{this.state.errorMsg}</h2>
                         <img
-                            style={{ width: '80px' }}
+                            style={styles.errorImg}
                             src="./img/not-found.svg"
                             alt=""
                         />

@@ -3,7 +3,7 @@ from pymongo import MongoClient
 
 class MoviesDB:
     def __init__(self):
-        self.db = self.db_client.movies_app
+        self.db = self.db_client.movies
 
     @property
     def db_client(self):

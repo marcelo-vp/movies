@@ -1,5 +1,8 @@
-import React, { Component, Fragment } from 'react';
-import { Button, TextField, Typography } from '@material-ui/core';
+import React, { Component } from 'react';
+import {
+    Card, CardActions, CardContent, Button,
+    TextField, Typography
+} from '@material-ui/core';
 import Api from '../../libs/Api';
 
 class Search extends Component {
@@ -20,12 +23,12 @@ class Search extends Component {
         this.setState({ showResults: false });
 
         if (!this.state.movieName) {
-            this.setState({ placeholder: 'Fill in a name...' });
+            this.setState({ helperText: 'Fill in a name!' });
             return;
         }
 
-        if (this.state.placeholder) {
-            this.setState({ placeholder: '' });
+        if (this.state.helperText) {
+            this.setState({ helperText: '' });
         }
 
         const result = await Api.get(
@@ -69,14 +72,62 @@ class Search extends Component {
     };
     render() {
         const styles = {
-            title: {
+            container: {
+                textAlign: 'center',
+            },
+            pageTitle: {
                 margin: '24px auto 35px'
+            },
+            searchForm: {
+                padding: '18px 0',
+                width: '50%',
+                margin: '0 auto'
             },
             label: {
                 padding: '0 20px'
             },
+            searchInput: {
+                width: 'calc(100% - 114px)'
+            },
             searchButton: {
-                marginLeft: 24
+                marginLeft: 24,
+                position: 'relative',
+                top: 10
+            },
+            searchResults: {
+                display: 'block',
+                width: '90%',
+                maxWidth: 1200,
+                margin: '0 auto',
+                padding: '40px 0'
+            },
+            cardContent: {
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'flex-start'
+            },
+            cardMain: {
+                display: 'inline-block',
+                width: '40%',
+                padding: '20px 0',
+                textAlign: 'center'
+            },
+            cardPlot: {
+                display: 'inline-block',
+                width: '60%',
+                padding: 20,
+                textAlign: 'justify'
+            },
+            movieTitle: {
+                textTransform: 'uppercase'
+            },
+            movieImg: {
+                display: 'block',
+                margin: '24px auto 0',
+                maxWidth: '100%'
+            },
+            cardActions: {
+                justifyContent: 'flex-end'
             },
             errorImg: {
                 width: 80
@@ -84,31 +135,23 @@ class Search extends Component {
         };
 
         return (
-            <Fragment>
+            <div style={styles.container}>
                 <section>
                     <Typography
                         variant="h2"
                         align="center"
                         color="primary"
-                        style={styles.title}
+                        style={styles.pageTitle}
                     >
                         Search for a movie:
                     </Typography>
-                    <form>
-                        <Typography
-                            component="label"
-                            htmlFor="movie-name"
-                            variant="caption"
-                            color="textPrimary"
-                            style={styles.label}
-                        >
-                            Enter a movie name:
-                        </Typography>
+                    <form style={styles.searchForm}>
                         <TextField
-                            name="movie-name"
-                            placeholder={this.state.placeholder}
+                            label="Enter a movie name"
+                            helperText={this.state.helperText}
                             value={this.state.movieName}
                             onChange={this.handleMovieName}
+                            style={styles.searchInput}
                         />
                         <Button
                             variant="contained"
@@ -122,16 +165,45 @@ class Search extends Component {
                     </form>
                 </section>
                 {this.state.showResults && (
-                    <section>
-                        <h2>{this.state.movieTitle}</h2>
-                        <div><img src={this.state.movieImg}/></div>
-                        <p>{this.state.moviePlot}</p>
-                        <button onClick={this.handleAddFavorite}>
-                            Add to favorites
-                        </button>
-                        {this.state.addedToFavorites && (
-                            <p>Sucessfully added to favorites!</p>
-                        )}
+                    <section style={styles.searchResults}>
+                        <Card>
+                            <CardContent style={styles.cardContent}>
+                                <div style={styles.cardMain}>
+                                    <Typography
+                                        variant="h5"
+                                        color="secondary"
+                                        style={styles.movieTitle}
+                                    >
+                                        {this.state.movieTitle}
+                                    </Typography>
+                                    <img src={this.state.movieImg} style={styles.movieImg}/>
+                                </div>
+                                <div style={styles.cardPlot}>
+                                    <Typography
+                                        variant="body1"
+                                        color="secondary"
+                                    >
+                                        {this.state.moviePlot}
+                                    </Typography>
+                                </div>
+                            </CardContent>
+                            <CardActions style={styles.cardActions}>
+                                <Button
+                                    color="primary"
+                                    onClick={this.handleAddFavorite}
+                                >
+                                    Add to favorites
+                                </Button>
+                            </CardActions>
+                            {this.state.addedToFavorites && (
+                                <Typography
+                                    variant="h6"
+                                    color="primary"
+                                >
+                                    Sucessfully added to favorites!
+                                </Typography>
+                            )}
+                        </Card>
                     </section>
                 )}
                 {this.state.showError && (
@@ -144,7 +216,7 @@ class Search extends Component {
                         />
                     </section>
                 )}
-            </Fragment>
+            </div>
         );
     }
 }

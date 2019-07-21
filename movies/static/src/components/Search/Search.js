@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import {
-    Card, CardActions, CardContent, Button,
-    TextField, Typography
+    Card, CardActions, CardContent,
+    Button, TextField, Typography
 } from '@material-ui/core';
 import Api from '../../libs/Api';
 
@@ -72,34 +72,30 @@ class Search extends Component {
     };
     render() {
         const styles = {
-            container: {
-                textAlign: 'center',
-            },
             pageTitle: {
-                margin: '24px auto 35px'
+                padding: '24px 0 36px'
             },
             searchForm: {
-                padding: '18px 0',
+                display: 'block',
+                margin: '0 auto',
                 width: '50%',
-                margin: '0 auto'
-            },
-            label: {
-                padding: '0 20px'
+                padding: '18px 0 24px',
             },
             searchInput: {
                 width: 'calc(100% - 114px)'
             },
             searchButton: {
-                marginLeft: 24,
                 position: 'relative',
-                top: 10
+                top: 10,
+                marginLeft: 24
             },
             searchResults: {
-                display: 'block',
-                width: '90%',
-                maxWidth: 1200,
-                margin: '0 auto',
                 padding: '40px 0'
+            },
+            card: {
+                display: 'block',
+                margin: '0 auto',
+                width: '90%'
             },
             cardContent: {
                 display: 'flex',
@@ -135,7 +131,7 @@ class Search extends Component {
         };
 
         return (
-            <div style={styles.container}>
+            <Fragment>
                 <section>
                     <Typography
                         variant="h2"
@@ -166,7 +162,7 @@ class Search extends Component {
                 </section>
                 {this.state.showResults && (
                     <section style={styles.searchResults}>
-                        <Card>
+                        <Card style={styles.card}>
                             <CardContent style={styles.cardContent}>
                                 <div style={styles.cardMain}>
                                     <Typography
@@ -216,7 +212,7 @@ class Search extends Component {
                         />
                     </section>
                 )}
-            </div>
+            </Fragment>
         );
     }
 }

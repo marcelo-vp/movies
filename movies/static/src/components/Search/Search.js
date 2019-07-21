@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import {
-    Card, CardActions, CardContent,
-    Button, TextField, Typography
+    Button, Card, CardActions, CardContent,
+    IconButton, TextField, Typography
 } from '@material-ui/core';
 import Api from '../../libs/Api';
 
@@ -123,6 +123,7 @@ class Search extends Component {
                 maxWidth: '100%'
             },
             cardActions: {
+                padding: '6px 16px',
                 justifyContent: 'flex-end'
             },
             errorImg: {
@@ -184,12 +185,13 @@ class Search extends Component {
                                 </div>
                             </CardContent>
                             <CardActions style={styles.cardActions}>
-                                <Button
+                                <IconButton
                                     color="primary"
+                                    aria-label="Add to favorites"
                                     onClick={this.handleAddFavorite}
                                 >
-                                    Add to favorites
-                                </Button>
+                                    <FavoriteIcon/>
+                                </IconButton>
                             </CardActions>
                             {this.state.addedToFavorites && (
                                 <Typography

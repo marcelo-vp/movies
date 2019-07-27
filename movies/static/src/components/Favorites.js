@@ -1,4 +1,6 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
+import { Button } from '@material-ui/core';
+import MovieCard from './MovieCard';
 import Api from '../libs/Api';
 
 class Favorites extends Component {
@@ -12,9 +14,15 @@ class Favorites extends Component {
         const response = await Api.list('/favorites');
         const movies = JSON.parse(response)['favorites'];
         this.setState({ movies });
-    }
+    };
     render() {
         const styles = {
+            section: {
+                padding: '20px 0'
+            },
+            loadButton: {
+                margin: '0 auto 40px'
+            },
             favoritesList: {
                 listStyleType: 'none',
                 textAlign: 'center',
@@ -31,25 +39,30 @@ class Favorites extends Component {
             }
         };
         return (
-            <Fragment>
-                <section>
-                    <button onClick={this.loadFavorites}>
-                        Load favorite movies!
-                    </button>
-                    <ul style={styles.favoritesList}>
-                        {this.state.movies.map((movie, index) => (
-                            <li
-                                key={`movie-${index}`}
-                                style={styles.favoritesListItem}
-                            >
-                                <h2>{movie.title}</h2>
-                                <img src={movie.image}/>
-                                <p>{movie.plot}</p>
-                            </li>
-                        ))}
-                    </ul>
-                </section>
-            </Fragment>
+            <section style={styles.section}>
+                <Button
+                    color="primary"
+                    onClick={this.loadFavorites}
+                    style={styles.loadButton}
+                >
+                    Load favorite movies
+                </Button>
+                <ul style={styles.favoritesList}>
+                    {this.state.movies.map((movie, index) => (
+                        <li
+                            key={`movie-${index}`}
+                            style={styles.favoritesListItem}
+                        >
+                            <MovieCard
+                                title={movie.Title}
+                                image={movie.Poster}
+                                plot={movie.Plot}
+                                year={movie.Year}
+                            />
+                        </li>
+                    ))}
+                </ul>
+            </section>
         );
     }
 }

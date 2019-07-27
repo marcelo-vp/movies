@@ -1,9 +1,9 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import {
     Button, Card, CardActions, CardContent,
     IconButton, TextField, Typography
 } from '@material-ui/core';
-import FavoriteIcon from '@material-ui/icons/Favorite'
+import Favorite from '@material-ui/icons/Favorite'
 import Api from '../../libs/Api';
 
 class Search extends Component {
@@ -50,9 +50,7 @@ class Search extends Component {
         else {
             this.setState({
                 showError: false,
-                movieTitle: movieData['Title'],
-                movieImg: movieData['Poster'],
-                moviePlot: movieData['Plot'],
+                movieData,
                 showResults: true,
                 movieName: '',
                 addedToFavorites: false
@@ -60,12 +58,7 @@ class Search extends Component {
         }
     };
     handleAddFavorite = async () => {
-        const newFavorite = {
-            'title': this.state.movieTitle,
-            'image': this.state.movieImg,
-            'plot': this.state.moviePlot
-        };
-        const response = await Api.add('/favorites', newFavorite);
+        const response = await Api.add('/favorites', this.state.movieData);
 
         if (JSON.parse(response)['added']) {
             this.setState({ addedToFavorites: true })
@@ -73,6 +66,9 @@ class Search extends Component {
     };
     render() {
         const styles = {
+            sectionWrapper: {
+                paddingBottom: 20
+            },
             pageTitle: {
                 padding: '24px 0 36px'
             },
@@ -133,7 +129,7 @@ class Search extends Component {
         };
 
         return (
-            <Fragment>
+            <div style={styles.sectionWrapper}>
                 <section>
                     <Typography
                         variant="h2"
@@ -172,16 +168,19 @@ class Search extends Component {
                                         color="secondary"
                                         style={styles.movieTitle}
                                     >
-                                        {this.state.movieTitle}
+                                        {this.state.movieData.Title}
                                     </Typography>
-                                    <img src={this.state.movieImg} style={styles.movieImg}/>
+                                    <img
+                                        src={this.state.movieData.Poster}
+                                        style={styles.movieImg}
+                                    />
                                 </div>
                                 <div style={styles.cardPlot}>
                                     <Typography
                                         variant="body1"
                                         color="secondary"
                                     >
-                                        {this.state.moviePlot}
+                                        {this.state.movieData.Plot}
                                     </Typography>
                                 </div>
                             </CardContent>
@@ -191,7 +190,7 @@ class Search extends Component {
                                     aria-label="Add to favorites"
                                     onClick={this.handleAddFavorite}
                                 >
-                                    <FavoriteIcon/>
+                                    <Favorite/>
                                 </IconButton>
                             </CardActions>
                             {this.state.addedToFavorites && (
@@ -215,7 +214,7 @@ class Search extends Component {
                         />
                     </section>
                 )}
-            </Fragment>
+            </div>
         );
     }
 }

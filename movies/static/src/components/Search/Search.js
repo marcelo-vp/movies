@@ -186,8 +186,8 @@ class Search extends Component {
                             </CardContent>
                             <CardActions style={styles.cardActions}>
                                 <IconButton
-                                    color="primary"
                                     aria-label="Add to favorites"
+                                    color="primary"
                                     onClick={this.handleAddFavorite}
                                 >
                                     <Favorite/>
@@ -208,9 +208,8 @@ class Search extends Component {
                     <section>
                         <h2>{this.state.errorMsg}</h2>
                         <img
-                            style={styles.errorImg}
                             src="./img/not-found.svg"
-                            alt=""
+                            style={styles.errorImg}
                         />
                     </section>
                 )}

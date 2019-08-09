@@ -26,6 +26,12 @@ class MovieCard extends Component {
             },
             expandButton: {
                 marginLeft: 'auto'
+            },
+            cardContent: {
+                padding: 20
+            },
+            plot: {
+                textAlign: 'justify'
             }
         };
         return (
@@ -62,10 +68,11 @@ class MovieCard extends Component {
                         timeout="auto"
                         unmountOnExit
                     >
-                        <CardContent>
+                        <CardContent style={styles.cardContent}>
                             <Typography
                                 variant="body2"
                                 component="p"
+                                style={styles.plot}
                             >
                                 {this.props.plot}
                             </Typography>

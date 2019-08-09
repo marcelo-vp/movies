@@ -17,3 +17,8 @@ def handle_movie_search(movie_name):
 def handle_movie_favorites():
     controller = FavoritesController(request)
     return controller.handle_favorites()
+
+@app.route('/favorites/<name>', methods=['DELETE'])
+def handle_remove_favorite(name):
+    controller = FavoritesController(request)
+    return controller.handle_favorites()

@@ -16,7 +16,7 @@ const request = (function() {
     return {
         get: async path => await __request('GET', path, null),
         post: async (path, payload) => await __request('POST', path, payload),
-        delete: async (path, payload) => await __request('DELETE', path, payload)
+        delete: async path => await __request('DELETE', path, null)
     };
 })();
 

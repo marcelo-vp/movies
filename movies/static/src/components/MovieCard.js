@@ -3,7 +3,8 @@ import {
     Card, CardHeader, CardMedia, CardActions,
     CardContent, Collapse, IconButton, Typography
 } from '@material-ui/core';
-import ExpandMore from '@material-ui/icons/ExpandMore'
+import ExpandMore from '@material-ui/icons/ExpandMore';
+import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 
 class MovieCard extends Component {
     constructor(props) {
@@ -40,9 +41,17 @@ class MovieCard extends Component {
                     />
                     <CardActions disableSpacing>
                         <IconButton
-                            onClick={this.handleExpandContent}
+                            aria-label="Remove from favorites"
+                            color="secondary"
+                            onClick={this.props.removeFavorite}
+                        >
+                            <FavoriteBorder/>
+                        </IconButton>
+                        <IconButton
                             aria-expanded={this.state.expanded}
-                            aria-label="show more"
+                            aria-label="Show more"
+                            color="secondary"
+                            onClick={this.handleExpandContent}
                             style={styles.expandButton}
                         >
                             <ExpandMore/>

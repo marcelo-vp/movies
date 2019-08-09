@@ -15,3 +15,6 @@ class Favorites(MoviesDB):
             del favorite['_id']
             favorites.append(favorite)
         return favorites
+
+    def remove_favorite(self, name):
+        self.favorites.delete_one({'Title': name})

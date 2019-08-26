@@ -42,7 +42,7 @@ def search_movie(title, **kwargs):
     # Tries to get a response within the timeout value
     # and with status code == 200
     try:
-        response = requests.get(OMDB_BASE_URL, params=params, timeout=0.01)
+        response = requests.get(OMDB_BASE_URL, params=params, timeout=3.00)
         if not response.status_code == 200:
             response.raise_for_status()
     except Exception as error:
@@ -60,7 +60,6 @@ def search_movie(title, **kwargs):
         except ValueError as error:
             print(error)
             error_data["error"] = str(error)
-            import pdb; pdb.set_trace()
             search_reponse = error_data
         else:
             search_reponse = movie_data

@@ -1,4 +1,4 @@
-import re, requests
+import json, re, requests
 from movies.constants import OMDB_BASE_URL
 from movies.settings import OMDB_API_KEY
 
@@ -42,13 +42,13 @@ def search_movie(title, **kwargs):
     # Tries to get a response within the timeout value
     # and with status code == 200
     try:
-        response = requests.get(OMDB_BASE_URL, params=params, timeout=3.00)
+        response = requests.get(OMDB_BASE_URL, params=params, timeout=0.01)
         if not response.status_code == 200:
             response.raise_for_status()
     except Exception as error:
         print(error)
         error_data["error"] = "Service unavailable. Try again later."
-        return error_data
+        search_reponse = error_data
     else:
         # Tries to parse the response into JSON format
         # and checks if the "Response" key is not False
@@ -60,6 +60,9 @@ def search_movie(title, **kwargs):
         except ValueError as error:
             print(error)
             error_data["error"] = str(error)
-            return error_data
+            import pdb; pdb.set_trace()
+            search_reponse = error_data
         else:
-            return movie_data
+            search_reponse = movie_data
+
+    return json.dumps(search_reponse)

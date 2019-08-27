@@ -46,7 +46,6 @@ def search_movie(title, **kwargs):
         if not response.status_code == 200:
             response.raise_for_status()
     except Exception as error:
-        print(error)
         error_data["error"] = "Service unavailable. Try again later."
         search_reponse = error_data
     else:
@@ -58,7 +57,6 @@ def search_movie(title, **kwargs):
             if not has_response:
                 raise ValueError("Movie not found!")
         except ValueError as error:
-            print(error)
             error_data["error"] = str(error)
             search_reponse = error_data
         else:

@@ -8,7 +8,7 @@ module.exports = {
         publicPath: '/static/dist/',
         port: 3000,
         proxy: {
-            '!(/static/dist/**/**.*)': {
+            '!/static/dist/**': {
                 target: 'http://127.0.0.1:5000'
             }
         }
@@ -16,7 +16,8 @@ module.exports = {
     devtool: 'inline-source-map',
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, 'movies/static/dist')
+        path: path.resolve(__dirname, 'movies/static/dist'),
+        publicPath: '/static/dist/'
     },
     module: {
         rules: [

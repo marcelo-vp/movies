@@ -6,7 +6,6 @@ module.exports = {
     devServer: {
         contentBase: path.join(__dirname, 'movies'),
         publicPath: '/static/dist/',
-        watchContentBase: true,
         port: 3000,
         proxy: {
             '!(/static/dist/**/**.*)': {

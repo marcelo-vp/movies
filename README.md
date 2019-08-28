@@ -10,8 +10,22 @@ Since this application requires a MongoDB instance, you should provide one accor
     make dependencies
 
 ## 3. Running the app
-### 3.1 Bundling JS modules and other assets
+### 3.1 Development
+Development mode requires two separate processes, one for the backend server in Flask and
+another for the frontend server, which is a Webpack development tool.
+
+*Starts backend server:*
+
+    make run mode=development
+
+*Starts frontend server:*
+
+    make run-front
+### 3.2 Production
+*Creates the JS bundle:*
+
     make build
-### 3.2 Running the app
-    make run mode={environment}
-  where *{environment}* is either **development** or **production**
+
+*Starts the application:*
+
+    make run mode=production

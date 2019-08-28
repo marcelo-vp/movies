@@ -5,4 +5,4 @@ build:
 	npm run build
 
 run:
-	export FLASK_APP=movies FLASK_ENV=$(mode) && flask run
+	export FLASK_APP=movies FLASK_ENV=$(mode) && flask run & npm run dev

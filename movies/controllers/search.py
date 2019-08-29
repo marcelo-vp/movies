@@ -16,6 +16,6 @@ class SearchController:
                 self.name,
                 plot=self.plot
             )
-            if not json.loads(movie_data)['has_error']:
+            if not json.loads(movie_data).get('has_error'):
                 self.cache.add(self.name, movie_data)
         return movie_data

@@ -1,3 +1,4 @@
+import { hot } from 'react-hot-loader/root';
 import React from 'react';
 import { Container } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/styles';
@@ -5,7 +6,7 @@ import Theme from '../theme';
 import Search from './Search';
 import Favorites from './Favorites';
 
-export default function App() {
+const App = () => {
     const styles = {
         container: {
             boxSizing: 'border-box',
@@ -24,3 +25,5 @@ export default function App() {
         </ThemeProvider>
     );
 };
+
+export default hot(App);

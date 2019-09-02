@@ -4,38 +4,59 @@ jobs:
     docker:
       - image: circleci/python:3.7.3
       - image: circleci/node:12.4.0
+    working_directory: ~/movies
     steps:
       - checkout
-  backend:
+      - save_cache:
+          key: v1-repo-{{ .Branch }}-{{ .Revision }}
+          paths:
+            - ~/movies
+  backend_dependencies:
     docker:
       - image: circleci/python:3.7.3
+    working_directory: ~/movies
     steps:
+      - restore_cache:
+          key: v1-repo-{{ .Branch }}-{{ .Revision }}
       - run:
           name: PIP install
           command: |
             python3 -m venv venv
             . venv/bin/activate
             pip install -r requirements.txt
-  frontend:
+  frontend_dependencies:
     docker:
       - image: circleci/node:12.4.0
+    working_directory: ~/movies
     steps:
+      - restore_cache:
+          key: v1-repo-{{ .Branch }}-{{ .Revision }}
       - run:
           name: NPM install
           command: |
             npm i
+  frontend_build:
+    docker:
+      - image: circleci/node:12.4.0
+    working_directory: ~/movies
+    steps:
+      - restore_cache:
+          key: v1-repo-{{ .Branch }}-{{ .Revision }}
       - run:
           name: Build JS
           command: |
             make build
 workflows:
   version: 2
-  checkout_backend_frontend:
+  jobs_workflow:
     jobs:
       - checkout_code
-      - backend:
+      - backend_dependencies:
           requires:
             - checkout_code
-      - frontend:
+      - frontend_dependencies:
+          requires:
+            - checkout_code
+      - frontend_build:
           requires:
             - checkout_code

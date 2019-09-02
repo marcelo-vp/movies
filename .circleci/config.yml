@@ -11,7 +11,7 @@ jobs:
           key: v1-repo-{{ .Branch }}-{{ .Revision }}
           paths:
             - ~/movies
-  backend_dependencies:
+  back_deps:
     docker:
       - image: circleci/python:3.7.3
     working_directory: ~/movies
@@ -24,24 +24,32 @@ jobs:
             python3 -m venv venv
             . venv/bin/activate
             pip install -r requirements.txt
-  frontend_dependencies:
+  front_deps:
     docker:
       - image: circleci/node:12.4.0
     working_directory: ~/movies
     steps:
       - restore_cache:
           key: v1-repo-{{ .Branch }}-{{ .Revision }}
+      - restore_cache:
+          key: v1-npm-deps-{{ checksum "package-lock.json" }}
       - run:
           name: NPM install
           command: |
             npm i
-  frontend_build:
+      - save_cache:
+          key: v1-npm-deps-{{ checksum "package-lock.json" }}
+          paths:
+            - ~/movies
+  front_build:
     docker:
       - image: circleci/node:12.4.0
     working_directory: ~/movies
     steps:
       - restore_cache:
           key: v1-repo-{{ .Branch }}-{{ .Revision }}
+      - restore_cache:
+          key: v1-npm-deps-{{ checksum "package-lock.json" }}
       - run:
           name: Build JS
           command: |
@@ -51,12 +59,12 @@ workflows:
   jobs_workflow:
     jobs:
       - checkout_code
-      - backend_dependencies:
+      - back_deps:
           requires:
             - checkout_code
-      - frontend_dependencies:
+      - front_deps:
           requires:
             - checkout_code
-      - frontend_build:
+      - front_build:
           requires:
-            - frontend_dependencies
+            - front_deps

@@ -31,3 +31,6 @@ another for the frontend server, which is a Webpack development tool.
 *Starts the application:*
 
     make run mode=production
+
+### ∞ To Do
+- On Circle CI config, cache frontend build

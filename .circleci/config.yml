@@ -59,4 +59,4 @@ workflows:
             - checkout_code
       - frontend_build:
           requires:
-            - checkout_code
+            - frontend_dependencies

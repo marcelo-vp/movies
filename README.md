@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/marcelo-vp/movies/tree/master.svg?style=svg)](https://circleci.com/gh/marcelo-vp/movies/tree/master)
+[![CircleCI](https://img.shields.io/circleci/build/gh/marcelo-vp/movies)](https://circleci.com/gh/marcelo-vp/movies)
 
 ## 1. Introduction
 The **Movies App** provides an easy way to search for movies and add them to your favorites list.

@@ -54,6 +54,17 @@ jobs:
           name: Build JS
           command: |
             make build
+  back_tests:
+    docker:
+      - image: circleci/python:3.7.3
+    working_directory: ~/movies
+    steps:
+      - restore_cache:
+          key: v1-repo-{{ .Branch }}-{{ .Revision }}
+      - run:
+          name: Backend Tests
+          command: |
+            make test-all
 workflows:
   version: 2
   jobs_workflow:
@@ -68,3 +79,6 @@ workflows:
       - front_build:
           requires:
             - front_deps
+      - back_tests:
+          requires:
+            - back_deps

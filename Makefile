@@ -9,3 +9,9 @@ run:
 
 run-front:
 	npm run dev
+
+test-all:
+	pytest
+
+test:
+	pytest -k $(matching)

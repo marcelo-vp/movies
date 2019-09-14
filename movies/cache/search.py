@@ -1,4 +1,3 @@
-import json
 from movies.cache import Cache
 
 

@@ -7,7 +7,7 @@ class TestCache:
     @pytest.fixture
     def cache_instances(self):
         instances = []
-        for i in range(10):
+        for _ in range(10):
             instance = Cache()
             instances.append(instance)
         return instances

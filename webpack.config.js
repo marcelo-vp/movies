@@ -34,6 +34,12 @@ module.exports = {
                         cacheDirectory: true
                     }
                 }
+            },
+            {
+                test: /\.(svg|png|jpg|gif)$/,
+                use: {
+                    loader: 'file-loader'
+                }
             }
         ]
     }

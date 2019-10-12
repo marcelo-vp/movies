@@ -45,7 +45,7 @@ def search_movie(title, **kwargs):
         response = requests.get(OMDB_BASE_URL, params=params, timeout=3.00)
         if not response.status_code == 200:
             response.raise_for_status()
-    except Exception as error:
+    except requests.exceptions.HTTPError as error:
         error_data["error"] = "Service unavailable. Try again later."
         search_reponse = error_data
     else:

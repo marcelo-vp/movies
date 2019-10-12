@@ -5,6 +5,7 @@ import {
 } from '@material-ui/core';
 import Favorite from '@material-ui/icons/Favorite'
 import Api from '../../libs/Api';
+import NotFoundImg from './img/not-found.svg';
 
 class Search extends Component {
     constructor(props) {
@@ -123,6 +124,12 @@ class Search extends Component {
                 padding: '6px 16px',
                 justifyContent: 'flex-end'
             },
+            errorSection: {
+                padding: '42px 0px 28px'
+            },
+            errorMsg: {
+                paddingBottom: 20
+            },
             errorImg: {
                 width: 80
             }
@@ -205,10 +212,16 @@ class Search extends Component {
                     </section>
                 )}
                 {this.state.showError && (
-                    <section>
-                        <h2>{this.state.errorMsg}</h2>
+                    <section style={styles.errorSection}>
+                        <Typography
+                            variant="h5"
+                            color="secondary"
+                            style={styles.errorMsg}
+                        >
+                            {this.state.errorMsg}
+                        </Typography>
                         <img
-                            src="./img/not-found.svg"
+                            src={NotFoundImg}
                             style={styles.errorImg}
                         />
                     </section>

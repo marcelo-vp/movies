@@ -6,3 +6,4 @@ __pycache__
 /movies/static/dist
 /node_modules
 .pytest_cache/
+/drafts

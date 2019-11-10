@@ -1,11 +1,17 @@
-[![CircleCI](https://img.shields.io/circleci/build/gh/marcelo-vp/movies)](https://circleci.com/gh/marcelo-vp/movies)
+# Movies
+
+[![CircleCI](https://img.shields.io/circleci/build/gh/marcelo-vp/movies)](https://circleci.com/gh/marcelo-vp/movies)&nbsp;
+![Python](https://img.shields.io/badge/python-3.7.4-blue)&nbsp;
+![Flask](https://img.shields.io/badge/flask-1.0.2-blue)&nbsp;
+![Node](https://img.shields.io/badge/node-v12.10.0-green)&nbsp;
+![React](https://img.shields.io/badge/react-16.8.6-green)
 
 ## 1. Introduction
-The **Movies App** provides an easy way to search for movies and add them to your favorites list.
+The **Movies** application provides an easy way to search for movies and add them to your favorites list.
 
 ## 2. Setting up the environment
-### 2.1 Providing a database service
-Since this application requires a MongoDB instance, you should provide one according to your operational system.
+### 2.1 Providing the services
+This application requires MongoDB and Redis clients for providing database and cache services, respectively.
 ### 2.2 Creating a virtualenv
     mkvirtualenv -p python3 movies
 ### 2.3 Installing both Python and Node dependencies

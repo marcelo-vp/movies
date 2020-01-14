@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import {
-    Button, Card, CardActions, CardContent,
-    IconButton, TextField, Typography
+    Button,
+    Card,
+    CardActions,
+    CardContent,
+    IconButton,
+    TextField,
+    Typography
 } from '@material-ui/core';
-import Favorite from '@material-ui/icons/Favorite'
+import Favorite from '@material-ui/icons/Favorite';
 import Api from '../../libs/Api';
 import NotFoundImg from './img/not-found.svg';
 
@@ -33,10 +38,7 @@ class Search extends Component {
             this.setState({ helperText: '' });
         }
 
-        const result = await Api.get(
-            '/search',
-            this.state.movieName
-        );
+        const result = await Api.get('/search', this.state.movieName);
         this.handleSearchResult(result);
     };
     handleSearchResult = result => {
@@ -47,8 +49,7 @@ class Search extends Component {
                 errorMsg: movieData['error'],
                 showError: true
             });
-        }
-        else {
+        } else {
             this.setState({
                 showError: false,
                 movieData,
@@ -62,7 +63,7 @@ class Search extends Component {
         const response = await Api.add('/favorites', this.state.movieData);
 
         if (JSON.parse(response)['added']) {
-            this.setState({ addedToFavorites: true })
+            this.setState({ addedToFavorites: true });
         }
     };
     render() {
@@ -77,7 +78,7 @@ class Search extends Component {
                 display: 'block',
                 margin: '0 auto',
                 width: '50%',
-                padding: '18px 0 24px',
+                padding: '18px 0 24px'
             },
             searchInput: {
                 width: 'calc(100% - 114px)'
@@ -139,25 +140,25 @@ class Search extends Component {
             <div style={styles.sectionWrapper}>
                 <section>
                     <Typography
-                        variant="h2"
-                        align="center"
-                        color="primary"
+                        variant='h2'
+                        align='center'
+                        color='primary'
                         style={styles.pageTitle}
                     >
                         Search for a movie:
                     </Typography>
                     <form style={styles.searchForm}>
                         <TextField
-                            label="Enter a movie name"
+                            label='Enter a movie name'
                             helperText={this.state.helperText}
                             value={this.state.movieName}
                             onChange={this.handleMovieName}
                             style={styles.searchInput}
                         />
                         <Button
-                            variant="contained"
-                            color="primary"
-                            type="submit"
+                            variant='contained'
+                            color='primary'
+                            type='submit'
                             onClick={this.handleSearch}
                             style={styles.searchButton}
                         >
@@ -171,8 +172,8 @@ class Search extends Component {
                             <CardContent style={styles.cardContent}>
                                 <div style={styles.cardMain}>
                                     <Typography
-                                        variant="h5"
-                                        color="secondary"
+                                        variant='h5'
+                                        color='secondary'
                                         style={styles.movieTitle}
                                     >
                                         {this.state.movieData.Title}
@@ -184,8 +185,8 @@ class Search extends Component {
                                 </div>
                                 <div style={styles.cardPlot}>
                                     <Typography
-                                        variant="body1"
-                                        color="secondary"
+                                        variant='body1'
+                                        color='secondary'
                                     >
                                         {this.state.movieData.Plot}
                                     </Typography>
@@ -193,18 +194,15 @@ class Search extends Component {
                             </CardContent>
                             <CardActions style={styles.cardActions}>
                                 <IconButton
-                                    aria-label="Add to favorites"
-                                    color="primary"
+                                    aria-label='Add to favorites'
+                                    color='primary'
                                     onClick={this.handleAddFavorite}
                                 >
-                                    <Favorite/>
+                                    <Favorite />
                                 </IconButton>
                             </CardActions>
                             {this.state.addedToFavorites && (
-                                <Typography
-                                    variant="h6"
-                                    color="primary"
-                                >
+                                <Typography variant='h6' color='primary'>
                                     Sucessfully added to favorites!
                                 </Typography>
                             )}
@@ -214,16 +212,13 @@ class Search extends Component {
                 {this.state.showError && (
                     <section style={styles.errorSection}>
                         <Typography
-                            variant="h5"
-                            color="secondary"
+                            variant='h5'
+                            color='secondary'
                             style={styles.errorMsg}
                         >
                             {this.state.errorMsg}
                         </Typography>
-                        <img
-                            src={NotFoundImg}
-                            style={styles.errorImg}
-                        />
+                        <img src={NotFoundImg} style={styles.errorImg} />
                     </section>
                 )}
             </div>

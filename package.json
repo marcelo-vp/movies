@@ -6,6 +6,7 @@
   "scripts": {
     "build": "webpack",
     "dev": "webpack-dev-server --hot",
+    "prettier": "node_modules/prettier/bin-prettier.js --config ./.prettierrc.json --write 'movies/**/*.{js, py}'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -53,7 +54,7 @@
     }
   },
   "lint-staged": {
-    "*.{js,json,md,py}": [
+    "*.{js,json}": [
       "prettier --write",
       "git add"
     ]

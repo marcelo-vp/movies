@@ -6,7 +6,7 @@ import App from './components/App';
 const render = Component => {
     ReactDOM.render(
         <AppContainer>
-            <Component/>
+            <Component />
         </AppContainer>,
         document.querySelector('#app')
     );
@@ -16,6 +16,6 @@ render(App);
 
 if (module.hot) {
     module.hot.accept('./components/App', () => {
-        render(<App/>);
+        render(<App />);
     });
 }

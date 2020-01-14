@@ -13,14 +13,14 @@ const App = () => {
             padding: '20px 0',
             minHeight: '100vh',
             textAlign: 'center'
-        },
-    }
+        }
+    };
 
     return (
         <ThemeProvider theme={Theme}>
             <Container style={styles.container}>
-                <Search/>
-                <Favorites/>
+                <Search />
+                <Favorites />
             </Container>
         </ThemeProvider>
     );

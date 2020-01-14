@@ -3,6 +3,10 @@ root = true
 [*]
 trim_trailing_whitespace = true
 
+[*.py]
+indent_style = space
+indent_size = 4
+
 [package.json]
 indent_style = space
 indent_size = 2

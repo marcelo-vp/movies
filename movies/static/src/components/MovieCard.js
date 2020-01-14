@@ -1,7 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import {
-    Card, CardHeader, CardMedia, CardActions,
-    CardContent, Collapse, IconButton, Typography
+    Card,
+    CardHeader,
+    CardMedia,
+    CardActions,
+    CardContent,
+    Collapse,
+    IconButton,
+    Typography
 } from '@material-ui/core';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
@@ -41,37 +47,34 @@ class MovieCard extends Component {
                         title={this.props.title}
                         subheader={this.props.year}
                     />
-                    <CardMedia
-                        image={this.props.image}
-                        style={styles.media}
-                    />
+                    <CardMedia image={this.props.image} style={styles.media} />
                     <CardActions disableSpacing>
                         <IconButton
-                            aria-label="Remove from favorites"
-                            color="secondary"
+                            aria-label='Remove from favorites'
+                            color='secondary'
                             onClick={this.props.removeFavorite}
                         >
-                            <FavoriteBorder/>
+                            <FavoriteBorder />
                         </IconButton>
                         <IconButton
                             aria-expanded={this.state.expanded}
-                            aria-label="Show more"
-                            color="secondary"
+                            aria-label='Show more'
+                            color='secondary'
                             onClick={this.handleExpandContent}
                             style={styles.expandButton}
                         >
-                            <ExpandMore/>
+                            <ExpandMore />
                         </IconButton>
                     </CardActions>
                     <Collapse
                         in={this.state.expanded}
-                        timeout="auto"
+                        timeout='auto'
                         unmountOnExit
                     >
                         <CardContent style={styles.cardContent}>
                             <Typography
-                                variant="body2"
-                                component="p"
+                                variant='body2'
+                                component='p'
                                 style={styles.plot}
                             >
                                 {this.props.plot}

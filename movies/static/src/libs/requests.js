@@ -1,6 +1,6 @@
 const request = (function() {
     const __request = (method, path, payload) => {
-        return new Promise((resolve, reject) => {
+        return new Promise(resolve => {
             const xhr = new XMLHttpRequest();
             xhr.onreadystatechange = () => {
                 if (xhr.readyState === 4 && xhr.status === 200) {

@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { func, string } from 'prop-types';
 import {
     Card,
     CardHeader,
@@ -86,5 +87,13 @@ class MovieCard extends Component {
         );
     }
 }
+
+MovieCard.propTypes = {
+    title: string,
+    year: string,
+    image: string,
+    plot: string,
+    removeFavorite: func
+};
 
 export default MovieCard;

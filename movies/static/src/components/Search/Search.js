@@ -145,7 +145,7 @@ class Search extends Component {
                         color='primary'
                         style={styles.pageTitle}
                     >
-                        Search for a movie:
+                        Search in IMDB
                     </Typography>
                     <form style={styles.searchForm}>
                         <TextField

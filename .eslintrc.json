@@ -8,13 +8,14 @@
         "plugin:react/recommended",
         "plugin:prettier/recommended"
     ],
+    "parser": "babel-eslint",
     "parserOptions": {
-        "ecmaVersion": 6,
         "sourceType": "module",
-        "ecmaFeatures": {"jsx": true}
+        "ecmaFeatures": { "jsx": true }
     },
     "plugins": ["prettier", "react"],
     "rules": {
-        "prettier/prettier": "error"
+        "prettier/prettier": "error",
+        "strict": 0
     }
 }

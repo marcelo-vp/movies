@@ -1,10 +1,11 @@
-import os, redis
+import redis
 from movies.constants import DEFAULT_CACHE_MINUTES, MINUTE_IN_SECONDS
+from movies.settings import REDIS_URL
 from datetime import timedelta
 
 
 class Cache:
-    client = redis.from_url(os.environ.get('REDIS_URL'))
+    client = redis.from_url(REDIS_URL)
 
     def set_value(
         self,

@@ -3,7 +3,12 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+# API tokens
 OMDB_API_KEY = os.getenv('OMDB_API_KEY')
-REDIS_URL = os.environ.get('REDIS_URL', 'redis://127.0.0.1:6379')
-DATABASE = os.environ.get('DATABASE', 'mongo')
-MONGO_URL = os.environ.get('MONGO_URL', 'mongodb://127.0.0.1:27017/')
+
+# Database
+DATABASE = os.getenv('DATABASE', default='mongo')
+MONGO_URL = os.getenv('MONGO_URL', default='mongodb://127.0.0.1:27017/')
+
+# Cache
+REDIS_URL = os.getenv('REDIS_URL', default='redis://127.0.0.1:6379')

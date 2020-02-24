@@ -65,6 +65,8 @@ jobs:
       - image: circleci/python:3.7.3
       - image: circleci/redis:5.0.5
     environment:
+      DATABASE: mongo
+      MONGO_URL: mongodb://127.0.0.1:27017/
       REDIS_URL: redis://127.0.0.1:6379
     working_directory: ~/movies
     steps:

@@ -1,13 +1,13 @@
 from pymongo import MongoClient
 import psycopg2
 
-from movies.settings import DATABASE, MONGO_URL
+from movies.settings import DATABASE, DATABASE_URL, MONGO_URL
 
 
-class MongoDB():
+class MongoDB:
     def __init__(self):
-        client = MongoClient(MONGO_URL)
-        self.db = client.movies
+        self.client = MongoClient(MONGO_URL)
+        self.db = self.client.movies
 
     def set_collection(self, collection):
         self.collection = self.db[collection]
@@ -23,13 +23,73 @@ class MongoDB():
         return records
 
     def delete(self, name):
-        self.collection.delete_one({'Title': name})
+        self.collection.delete_one({'title': name})
 
 
-class PostgreDB():
+class PostgreDB:
+    """Query for creating "favorites" table
+    CREATE TABLE favorites (
+        id SERIAL PRIMARY KEY,
+        title VARCHAR (200) UNIQUE NOT NULL,
+        year VARCHAR (4) NOT NULL,
+        poster VARCHAR (300) NOT NULL,
+        plot VARCHAR (2000) NOT NULL
+    );
+    """
+
+    columns = {
+        'favorites': ['title', 'year', 'poster', 'plot']
+    }
+    insert_favorite = """
+        INSERT INTO favorites ({columns})
+        VALUES (%(title)s, %(year)s, %(poster)s, %(plot)s);
+    """.format(columns=', '.join(columns['favorites']))
+    delete_favorite = """
+        DELETE FROM favorites WHERE title = %(title)s;
+    """
+    queries = {
+        'insert': {
+            'favorites': insert_favorite
+        },
+        'delete': {
+            'favorites': delete_favorite
+        }
+    }
+
     def __init__(self):
-        conn = psycopg2.connect(dbname='movies')
-        self.db = conn.cursor()
+        self.conn = psycopg2.connect(DATABASE_URL)
+        self.db = self.conn.cursor()
+
+    def set_collection(self, collection):
+        self.collection = collection
+
+    def add(self, data):
+        insert_data = {
+            column: data[column]
+            for column in self.columns[self.collection]
+        }
+        self.db.execute(self.queries['insert'][self.collection], insert_data)
+        self.conn.commit()
+
+    def list_all(self):
+        movies = []
+        self.db.execute(f'SELECT * FROM {self.collection};')
+
+        for item in self.db:
+            movie = {
+                column: item[i + 1]
+                for i, column in enumerate(self.columns[self.collection])
+            }
+            movies.append(movie)
+
+        return movies
+
+    def delete(self, name):
+        self.db.execute(
+            self.queries['delete'][self.collection],
+            {'title': name}
+        )
+        self.conn.commit()
 
 
 database_classes = {

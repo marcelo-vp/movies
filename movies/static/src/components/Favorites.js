@@ -17,7 +17,7 @@ class Favorites extends Component {
     };
     removeFavorite = async index => {
         const movies = [...this.state.movies];
-        const response = await Api.delete('/favorites', movies[index]['Title']);
+        const response = await Api.delete('/favorites', movies[index]['title']);
 
         if (JSON.parse(response)['deleted']) {
             movies.splice(index, 1);
@@ -63,10 +63,10 @@ class Favorites extends Component {
                             style={styles.favoritesListItem}
                         >
                             <MovieCard
-                                title={movie.Title}
-                                image={movie.Poster}
-                                plot={movie.Plot}
-                                year={movie.Year}
+                                title={movie.title}
+                                image={movie.poster}
+                                plot={movie.plot}
+                                year={movie.year}
                                 removeFavorite={() => {
                                     this.removeFavorite(index);
                                 }}

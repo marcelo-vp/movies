@@ -3,9 +3,10 @@ from movies.database import MoviesDB
 
 class Favorites(MoviesDB):
     def __init__(self):
-        if not hasattr(self, 'db'):
+        if not hasattr(self, 'instance'):
+            self.instance = self
             super().__init__()
-        self.set_collection('favorites')
+            self.set_collection('favorites')
 
     def add_favorite(self, data):
         self.add(data)

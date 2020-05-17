@@ -43,7 +43,6 @@ another for the frontend server, which is a Webpack development tool.
     make run mode=production
 
 ### ∞ To Do
-- Create favorites model for PostgreSQL database
-- Handle exceptions on database queries
-- Create singletons for database classes
+- Create favorites model with schema for PostgreSQL database
+- Handle exceptions on database with schema
 - On Circle CI config, cache frontend build

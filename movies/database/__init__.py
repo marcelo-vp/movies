@@ -31,9 +31,9 @@ class PostgreDB:
     CREATE TABLE favorites (
         id SERIAL PRIMARY KEY,
         title VARCHAR (200) UNIQUE NOT NULL,
-        year VARCHAR (4) NOT NULL,
+        year VARCHAR (10) NOT NULL,
         poster VARCHAR (300) NOT NULL,
-        plot VARCHAR (2000) NOT NULL
+        plot VARCHAR NOT NULL
     );
     """
 

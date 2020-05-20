@@ -30,13 +30,19 @@ class MovieCard extends Component {
             media: css({
                 height: 0,
                 paddingTop: '80%',
-                backgroundPosition: 'center 20%'
+                display: 'block',
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center 5%'
             }),
             expandButton: css({
                 marginLeft: 'auto'
             }),
             cardContent: css({
                 padding: 20
+            }),
+            cardActions: css({
+                justifyContent: 'flex-end'
             }),
             plot: css({
                 textAlign: 'justify'
@@ -49,8 +55,11 @@ class MovieCard extends Component {
                         title={this.props.title}
                         subheader={this.props.year}
                     />
-                    <CardMedia image={this.props.image} {...styles.media} />
-                    <CardActions disableSpacing>
+                    <CardMedia
+                        image={this.props.image}
+                        className={`${styles.media}`}
+                    />
+                    <CardActions disableSpacing {...styles.cardActions}>
                         <IconButton
                             aria-label='Remove from favorites'
                             color='secondary'

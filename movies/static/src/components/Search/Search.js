@@ -1,3 +1,4 @@
+import { css } from 'glamor';
 import React, { Component } from 'react';
 import {
     Button,
@@ -68,122 +69,150 @@ class Search extends Component {
     };
     render() {
         const styles = {
-            sectionWrapper: {
+            sectionWrapper: css({
                 paddingBottom: 20
-            },
-            pageTitle: {
+            }),
+            pageTitle: css({
                 padding: '24px 0 36px'
-            },
-            searchForm: {
+            }),
+            searchForm: css({
                 display: 'block',
                 margin: '0 auto',
-                width: '50%',
-                padding: '18px 0 24px'
-            },
-            searchInput: {
-                width: 'calc(100% - 114px)'
-            },
-            searchButton: {
-                position: 'relative',
-                top: 10,
-                marginLeft: 24
-            },
-            searchResults: {
+                width: '100%',
+                padding: '18px 0 24px',
+                '@media(min-width: 1024px)': {
+                    width: '50%'
+                }
+            }),
+            searchInput: css({
+                display: 'block',
+                margin: '0 auto',
+                width: '90%',
+                '@media(min-width: 768px)': {
+                    display: 'inline-block',
+                    margin: 0,
+                    width: 'calc(100% - 114px)'
+                }
+            }),
+            searchButton: css({
+                top: 24,
+                '@media(min-width: 768px)': {
+                    top: 10,
+                    display: 'inline-block',
+                    marginLeft: 24
+                }
+            }),
+            searchResults: css({
                 padding: '40px 0'
-            },
-            card: {
+            }),
+            card: css({
                 display: 'block',
                 margin: '0 auto',
-                width: '90%'
-            },
-            cardContent: {
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'flex-start'
-            },
-            cardMain: {
-                display: 'inline-block',
-                width: '40%',
+                width: '100%',
+                '@media(min-width: 1024px)': {
+                    width: '90%'
+                }
+            }),
+            cardContent: css({
+                display: 'block',
+                '@media(min-width: 768px)': {
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'flex-start'
+                }
+            }),
+            cardMain: css({
+                display: 'block',
+                width: '100%',
                 padding: '20px 0',
-                textAlign: 'center'
-            },
-            cardPlot: {
-                display: 'inline-block',
-                width: '60%',
-                padding: 20,
-                textAlign: 'justify'
-            },
-            movieTitle: {
+                textAlign: 'center',
+                '@media(min-width: 768px)': {
+                    display: 'inline-block',
+                    width: '40%'
+                }
+            }),
+            cardPlot: css({
+                display: 'block',
+                width: '100%',
+                paddingTop: 20,
+                textAlign: 'justify',
+                '@media(min-width: 768px)': {
+                    display: 'inline-block',
+                    width: '60%',
+                    padding: 20
+                }
+            }),
+            movieTitle: css({
                 textTransform: 'uppercase'
-            },
-            movieImg: {
+            }),
+            movieImg: css({
                 display: 'block',
                 margin: '24px auto 0',
                 maxWidth: '100%'
-            },
-            cardActions: {
+            }),
+            cardActions: css({
                 padding: '6px 16px',
                 justifyContent: 'flex-end'
-            },
-            errorSection: {
+            }),
+            errorSection: css({
                 padding: '42px 0px 28px'
-            },
-            errorMsg: {
+            }),
+            errorMsg: css({
                 paddingBottom: 20
-            },
-            errorImg: {
+            }),
+            errorImg: css({
                 width: 80
-            }
+            })
         };
 
         return (
-            <div style={styles.sectionWrapper}>
+            <div {...styles.sectionWrapper}>
                 <section>
                     <Typography
                         variant='h2'
                         align='center'
                         color='primary'
-                        style={styles.pageTitle}
+                        {...styles.pageTitle}
                     >
                         Search in IMDB
                     </Typography>
-                    <form style={styles.searchForm}>
+                    <form {...styles.searchForm}>
                         <TextField
                             label='Enter a movie name'
                             helperText={this.state.helperText}
                             value={this.state.movieName}
                             onChange={this.handleMovieName}
-                            style={styles.searchInput}
+                            {...styles.searchInput}
                         />
                         <Button
                             variant='contained'
                             color='primary'
                             type='submit'
                             onClick={this.handleSearch}
-                            style={styles.searchButton}
+                            {...styles.searchButton}
                         >
                             Search
                         </Button>
                     </form>
                 </section>
                 {this.state.showResults && (
-                    <section style={styles.searchResults}>
-                        <Card style={styles.card}>
-                            <CardContent style={styles.cardContent}>
-                                <div style={styles.cardMain}>
+                    <section {...styles.searchResults}>
+                        <Card {...styles.card}>
+                            <CardContent {...styles.cardContent}>
+                                <div {...styles.cardMain}>
                                     <Typography
                                         variant='h5'
                                         color='secondary'
-                                        style={styles.movieTitle}
+                                        {...styles.movieTitle}
                                     >
                                         {this.state.movieData.Title}
                                     </Typography>
                                     <img
                                         src={this.state.movieData.Poster}
-                                        style={styles.movieImg}
+                                        {...styles.movieImg}
                                     />
                                 </div>
-                                <div style={styles.cardPlot}>
+                                <div {...styles.cardPlot}>
                                     <Typography
                                         variant='body1'
                                         color='secondary'
@@ -192,7 +221,7 @@ class Search extends Component {
                                     </Typography>
                                 </div>
                             </CardContent>
-                            <CardActions style={styles.cardActions}>
+                            <CardActions {...styles.cardActions}>
                                 <IconButton
                                     aria-label='Add to favorites'
                                     color='primary'
@@ -210,15 +239,15 @@ class Search extends Component {
                     </section>
                 )}
                 {this.state.showError && (
-                    <section style={styles.errorSection}>
+                    <section {...styles.errorSection}>
                         <Typography
                             variant='h5'
                             color='secondary'
-                            style={styles.errorMsg}
+                            {...styles.errorMsg}
                         >
                             {this.state.errorMsg}
                         </Typography>
-                        <img src={NotFoundImg} style={styles.errorImg} />
+                        <img src={NotFoundImg} {...styles.errorImg} />
                     </section>
                 )}
             </div>

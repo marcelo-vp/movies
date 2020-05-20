@@ -1,3 +1,4 @@
+import { css } from 'glamor';
 import React, { Component } from 'react';
 import { Button } from '@material-ui/core';
 import MovieCard from './MovieCard';
@@ -26,41 +27,61 @@ class Favorites extends Component {
     };
     render() {
         const styles = {
-            section: {
+            section: css({
                 padding: '20px 0'
-            },
-            loadButton: {
+            }),
+            loadButton: css({
                 margin: '0 auto 40px'
-            },
-            favoritesList: {
+            }),
+            favoritesList: css({
                 listStyleType: 'none',
                 textAlign: 'center',
-                display: 'flex',
+                display: 'block',
                 margin: '0 auto',
-                alignItems: 'flex-start',
-                flexWrap: 'wrap',
-                justifyContent: 'center',
-                paddingTop: 40
-            },
-            favoritesListItem: {
-                width: '30%',
-                margin: '0 5% 10%'
-            }
+                padding: '40px 0 0',
+                '@media(min-width: 768px)': {
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    flexWrap: 'wrap',
+                    justifyContent: 'center'
+                }
+            }),
+            favoritesListItem: css({
+                display: 'block',
+                width: '95%',
+                margin: '0 auto 20%',
+                ':first-child': {
+                    marginTop: '5%'
+                },
+                ':last-child': {
+                    marginBottom: '10%'
+                },
+                '@media(min-width: 768px)': {
+                    width: '40%',
+                    margin: '5%',
+                    ':first-child': {
+                        marginTop: '5%'
+                    }
+                },
+                '@media(min-width: 1024px)': {
+                    width: '30%'
+                }
+            })
         };
         return (
-            <section style={styles.section}>
+            <section {...styles.section}>
                 <Button
                     color='primary'
                     onClick={this.loadFavorites}
-                    style={styles.loadButton}
+                    {...styles.loadButton}
                 >
                     Load favorite movies
                 </Button>
-                <ul style={styles.favoritesList}>
+                <ul {...styles.favoritesList}>
                     {this.state.movies.map((movie, index) => (
                         <li
                             key={`movie-${index}`}
-                            style={styles.favoritesListItem}
+                            {...styles.favoritesListItem}
                         >
                             <MovieCard
                                 title={movie.title}

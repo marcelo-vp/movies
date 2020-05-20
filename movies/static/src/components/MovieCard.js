@@ -1,3 +1,4 @@
+import { css } from 'glamor';
 import React, { Component, Fragment } from 'react';
 import { func, string } from 'prop-types';
 import {
@@ -26,20 +27,20 @@ class MovieCard extends Component {
     };
     render() {
         const styles = {
-            media: {
+            media: css({
                 height: 0,
                 paddingTop: '80%',
                 backgroundPosition: 'center 20%'
-            },
-            expandButton: {
+            }),
+            expandButton: css({
                 marginLeft: 'auto'
-            },
-            cardContent: {
+            }),
+            cardContent: css({
                 padding: 20
-            },
-            plot: {
+            }),
+            plot: css({
                 textAlign: 'justify'
-            }
+            })
         };
         return (
             <Fragment>
@@ -48,7 +49,7 @@ class MovieCard extends Component {
                         title={this.props.title}
                         subheader={this.props.year}
                     />
-                    <CardMedia image={this.props.image} style={styles.media} />
+                    <CardMedia image={this.props.image} {...styles.media} />
                     <CardActions disableSpacing>
                         <IconButton
                             aria-label='Remove from favorites'
@@ -62,7 +63,7 @@ class MovieCard extends Component {
                             aria-label='Show more'
                             color='secondary'
                             onClick={this.handleExpandContent}
-                            style={styles.expandButton}
+                            {...styles.expandButton}
                         >
                             <ExpandMore />
                         </IconButton>
@@ -72,11 +73,11 @@ class MovieCard extends Component {
                         timeout='auto'
                         unmountOnExit
                     >
-                        <CardContent style={styles.cardContent}>
+                        <CardContent {...styles.cardContent}>
                             <Typography
                                 variant='body2'
                                 component='p'
-                                style={styles.plot}
+                                {...styles.plot}
                             >
                                 {this.props.plot}
                             </Typography>

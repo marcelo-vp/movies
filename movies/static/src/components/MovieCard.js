@@ -4,7 +4,6 @@ import { func, string } from 'prop-types';
 import {
     Card,
     CardHeader,
-    CardMedia,
     CardActions,
     CardContent,
     Collapse,
@@ -13,6 +12,7 @@ import {
 } from '@material-ui/core';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
+import CardImage from './CardImage';
 
 class MovieCard extends Component {
     constructor(props) {
@@ -27,14 +27,6 @@ class MovieCard extends Component {
     };
     render() {
         const styles = {
-            media: css({
-                height: 0,
-                paddingTop: '80%',
-                display: 'block',
-                backgroundSize: 'cover',
-                backgroundRepeat: 'no-repeat',
-                backgroundPosition: 'center 5%'
-            }),
             expandButton: css({
                 marginLeft: 'auto'
             }),
@@ -55,10 +47,7 @@ class MovieCard extends Component {
                         title={this.props.title}
                         subheader={this.props.year}
                     />
-                    <CardMedia
-                        image={this.props.image}
-                        className={`${styles.media}`}
-                    />
+                    <CardImage image={this.props.image} />
                     <CardActions disableSpacing {...styles.cardActions}>
                         <IconButton
                             aria-label='Remove from favorites'

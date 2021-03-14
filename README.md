@@ -1,7 +1,7 @@
 # Movies
 
 [![CircleCI](https://img.shields.io/circleci/build/gh/marcelo-vp/movies)](https://circleci.com/gh/marcelo-vp/movies)&nbsp;
-![Python](https://img.shields.io/badge/python-3.7.4-blue)&nbsp;
+![Python](https://img.shields.io/badge/python-3.9.2-blue)&nbsp;
 ![Flask](https://img.shields.io/badge/flask-1.0.2-blue)&nbsp;
 ![React](https://img.shields.io/badge/react-16.8.6-green)
 
@@ -45,4 +45,3 @@ another for the frontend server, which is a Webpack development tool.
 ### ∞ To Do
 - Create favorites model with schema for PostgreSQL database
 - Handle exceptions on database with schema
-- On Circle CI config, cache frontend build

@@ -3,6 +3,7 @@
 [![CircleCI](https://img.shields.io/circleci/build/gh/marcelo-vp/movies)](https://circleci.com/gh/marcelo-vp/movies)&nbsp;
 ![Python](https://img.shields.io/badge/python-3.9.2-blue)&nbsp;
 ![Flask](https://img.shields.io/badge/flask-1.0.2-blue)&nbsp;
+![NodeJS](https://img.shields.io/badge/node-12.4.0-green)&nbsp;
 ![React](https://img.shields.io/badge/react-16.8.6-green)
 
 ## 1. Introduction

@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "The Movies App provides an easy way to search for movies and add them to your favorites list.",
   "private": true,
+  "engines": {
+    "node": "12.4.x"
+  },
   "scripts": {
     "build": "webpack",
     "dev": "webpack-dev-server --hot",

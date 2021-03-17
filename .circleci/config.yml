@@ -101,6 +101,8 @@ workflows:
             - back_deps
       - heroku/deploy-via-git:
           context: heroku
+          pre-steps:
+            - run: git pull
           requires:
             - back_tests
             - front_build

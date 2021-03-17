@@ -82,6 +82,16 @@ jobs:
             python3 -m venv venv
             . venv/bin/activate
             make test-all
+  deploy:
+    executor: heroku/default
+    steps:
+      - checkout
+      - heroku/install
+      - run:
+          command: |
+            git remote set-url origin https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git
+            git pull
+      - heroku/deploy-via-git
 workflows:
   version: 2
   jobs_workflow:
@@ -99,10 +109,8 @@ workflows:
       - back_tests:
           requires:
             - back_deps
-      - heroku/deploy-via-git:
+      - deploy:
           context: heroku
-          pre-steps:
-            - run: git pull
           requires:
             - back_tests
             - front_build

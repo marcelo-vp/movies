@@ -12,7 +12,7 @@ The **Movies** application provides an easy way to search for movies and add the
 ## 2. Setting up the environment
 ### 2.1 Providing the services
 This application requires the following services:
-- MongoDB or PostgreSQL as database providers
+- PostgreSQL as database provider
 - Redis as cache provider
 ### 2.2 Creating a virtualenv
     mkvirtualenv -p python3 movies
@@ -20,7 +20,9 @@ This application requires the following services:
     make dependencies
 
 ## 3. Setting environment variables
-To choose between MongoDB or PostgreSQL as the app's database, set the `DATABASE` environment variable to either `mongo` or `postgre`. The former is the default setting.
+**OMDB_API_KEY**: you must ask for a developer API key to OMDB and set this variable with the given value.  
+**DATABASE_URL**: PostgreSQL connection address at *postgresql://user:passwrod@host:port/database*  
+**REDIS_URL**: Redis connection address at *redis://host:port*
 
 ## 4. Running the app
 ### 4.1 Development
@@ -42,7 +44,3 @@ another for the frontend server, which is a Webpack development tool.
 *Starts the application:*
 
     make run mode=production
-
-### To Do
-- Create favorites model with schema for PostgreSQL database
-- Handle exceptions on database with schema

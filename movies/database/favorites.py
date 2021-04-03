@@ -1,18 +1,38 @@
-from movies.database import MoviesDB
+from sqlalchemy import create_engine, select, Column, Integer, String
+from sqlalchemy.orm import declarative_base, Session
+
+from movies.settings import DATABASE_URL
+
+connection_URL = DATABASE_URL.replace('postgres:', 'postgresql:')
+engine = create_engine(connection_URL)
+session = Session(engine)
+Base = declarative_base()
 
 
-class Favorites(MoviesDB):
-    def __init__(self):
-        if not hasattr(self, 'instance'):
-            self.instance = self
-            super().__init__()
-            self.set_collection('favorites')
+class Favorites(Base):
+    __tablename__ = 'favorites'
 
-    def add_favorite(self, data):
-        self.add(data)
+    id = Column(Integer, primary_key=True)
+    title = Column(String(200))
+    year = Column(String(10))
+    poster = Column(String(300))
+    plot = Column(String)
 
-    def list_favorites(self):
-        return self.list_all()
+    @classmethod
+    def add(cls, data):
+        movie = cls(**data)
+        session.add(movie)
+        session.commit()
 
-    def remove_favorite(self, name):
-        self.delete(name)
+    @classmethod
+    def list_(cls):
+        result = session.execute(select(cls).order_by(cls.id))
+        return result.scalars().all()
+
+    @classmethod
+    def remove(cls, name):
+        result = session.execute(select(cls).where(cls.title == name))
+        session.delete(result.scalars().first())
+        session.commit()
+
+Base.metadata.create_all(engine)

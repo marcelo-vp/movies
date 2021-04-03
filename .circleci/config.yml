@@ -68,10 +68,10 @@ jobs:
       - image: circleci/postgres:13.2
       - image: circleci/redis:5.0.5
     environment:
-      DATABASE_URL: postgres://user:password@127.0.0.1:5432/movies
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: movies
+      DATABASE_URL: postgres://ubuntu:pass@localhost:5432/db_name
+      POSTGRES_USER: ubuntu
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: db_name
       REDIS_URL: redis://127.0.0.1:6379
     working_directory: ~/movies
     steps:

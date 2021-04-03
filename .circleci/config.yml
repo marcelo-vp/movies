@@ -65,6 +65,7 @@ jobs:
   back_tests:
     docker:
       - image: circleci/python:3.7.3
+      - image: circleci/postgres:13.2
       - image: circleci/redis:5.0.5
     environment:
       DATABASE_URL: postgres://root@127.0.0.1:5432/movies

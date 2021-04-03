@@ -65,14 +65,11 @@ jobs:
   back_tests:
     docker:
       - image: circleci/python:3.7.3
-      - image: circleci/postgres:13.2
+        environment:
+          DATABASE_URL: postgresql://root@localhost/circle_test
+          REDIS_URL: redis://127.0.0.1:6379
+      - image: circleci/postgres:9.6.9-alpine
       - image: circleci/redis:5.0.5
-    environment:
-      DATABASE_URL: postgres://ubuntu:pass@localhost:5432/db_name
-      POSTGRES_USER: ubuntu
-      POSTGRES_PASSWORD: pass
-      POSTGRES_DB: db_name
-      REDIS_URL: redis://127.0.0.1:6379
     working_directory: ~/movies
     steps:
       - restore_cache:
